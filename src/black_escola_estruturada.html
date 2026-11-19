@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Black Escola Estruturada</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=block" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  :root{
+    --preto:#111111; --grafite:#242424; --prata:#C4C6CA; --cinza:#777A80; --branco:#FFFFFF;
+    --prata-grad: linear-gradient(180deg,#F2F3F5 0%,#C4C6CA 55%,#9EA1A6 100%);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ background:#111; }
+  body{ font-family:'Montserrat',sans-serif; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page{ width:210mm; height:297mm; position:relative; overflow:hidden; page-break-after:always; }
+  .page:last-child{ page-break-after:auto; }
+  .dark{ background:var(--preto); color:var(--branco); }
+  .light{ background:#F6F6F7; color:var(--preto); }
+
+  .eyebrow{ font-weight:700; font-size:9.5pt; letter-spacing:.32em; text-transform:uppercase; }
+  .silver{ color:var(--prata); }
+  .t{ font-weight:900; letter-spacing:-.045em; line-height:.92; text-transform:lowercase; }
+  .tm{ font-size:.32em; vertical-align:top; position:relative; top:.25em; letter-spacing:0; font-weight:600; }
+  p{ font-weight:400; }
+  .rule{ height:1px; background:var(--prata); opacity:.55; }
+
+  /* ---------- CAPA ---------- */
+  .cover .photo{
+    position:absolute; left:-6mm; right:-6mm; top:86mm; height:280mm;
+    background:url('../assets/eduarda-ionara-capa.jpg') center top / cover no-repeat;
+  }
+  .cover .shade{ position:absolute; left:0; right:0; bottom:0; height:95mm;
+    background:linear-gradient(180deg, rgba(17,17,17,0) 0%, rgba(17,17,17,.82) 45%, #111 78%); }
+  .cover .top{ position:absolute; left:16mm; right:16mm; top:16mm; }
+  .cover .topbar{ display:flex; justify-content:space-between; align-items:center; color:var(--prata); }
+  .cover .bf{ font-weight:900; font-size:15pt; letter-spacing:.02em; text-transform:uppercase; }
+  .cover h1{ font-size:68pt; margin-top:13mm; }
+  .cover .sub{ margin-top:7mm; font-weight:700; font-size:11pt; letter-spacing:.3em; color:var(--branco); }
+  .cover .bottom{ position:absolute; left:16mm; right:16mm; bottom:15mm; }
+  .cover .lead{ font-weight:500; font-size:13pt; line-height:1.4; max-width:150mm; color:#F1F1F2; }
+  .cover .foot{ margin-top:8mm; padding-top:5mm; border-top:1px solid rgba(196,198,202,.4);
+    display:flex; justify-content:space-between; align-items:baseline; }
+  .cover .handles{ font-weight:600; font-size:10.5pt; color:var(--prata); letter-spacing:.01em; }
+  .cover .price{ font-weight:600; font-size:9.5pt; letter-spacing:.2em; color:var(--prata); }
+  .cover .price b{ font-weight:900; color:#fff; letter-spacing:.02em; font-size:12pt; margin-left:2mm; }
+  .names{ position:absolute; left:16mm; right:16mm; top:221mm; display:flex; justify-content:space-between; }
+  .names div{ font-size:8.5pt; color:#E7E8EA; font-weight:500; line-height:1.35; text-shadow:0 1px 8px rgba(0,0,0,.6); }
+  .names b{ display:block; font-weight:800; font-size:10pt; color:#fff; }
+  .names .r{ text-align:right; }
+
+  /* ---------- INTERNAS ---------- */
+  .inner{ padding:18mm 18mm 0 18mm; }
+  .head{ display:flex; justify-content:space-between; align-items:center; color:var(--cinza); }
+  .head .eyebrow{ font-size:8pt; }
+  .num{ font-weight:900; font-size:8pt; letter-spacing:.2em; }
+  .inner h2{ font-size:42pt; margin-top:22mm; color:var(--preto); }
+  .pfoot{ position:absolute; left:18mm; right:18mm; bottom:13mm; display:flex; justify-content:space-between;
+    font-size:7.5pt; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--cinza); }
+
+  /* página 2 */
+  .p2 .q{ margin-top:16mm; font-weight:800; font-size:20pt; letter-spacing:-.02em; line-height:1.2; max-width:150mm; }
+  .p2 .body{ margin-top:12mm; display:grid; grid-template-columns:1fr 1fr; gap:10mm; }
+  .p2 .body p{ font-size:11.5pt; line-height:1.65; color:#2b2b2b; }
+  .p2 .highlight{ position:absolute; left:0; right:0; bottom:0; height:86mm; background:var(--preto); color:#fff; padding:18mm 18mm 0 18mm; }
+  .p2 .highlight .t{ font-size:32pt; line-height:1.02; }
+  .p2 .highlight .t span{ display:block; }
+
+  /* página 3 */
+  .p3 h2{ font-size:36pt; margin-top:18mm; }
+  .kit{ margin-top:12mm; display:grid; grid-template-columns:24mm 1fr; column-gap:4mm; }
+  .kit .n{ font-weight:900; font-size:30pt; letter-spacing:-.05em; line-height:1; color:var(--prata); }
+  .kit h3{ font-weight:900; font-size:15pt; letter-spacing:-.02em; line-height:1.1; text-transform:uppercase; }
+  .kit .by{ margin-top:2.5mm; font-weight:600; font-size:9pt; color:var(--cinza); letter-spacing:.04em; }
+  .kit p{ margin-top:4.5mm; font-size:10.5pt; line-height:1.6; color:#2b2b2b; }
+  .kit p.inc{ color:#4a4c50; font-size:10pt; }
+  .kit p.inc b{ font-weight:700; color:var(--preto); }
+  .kit + .kit{ padding-top:10mm; border-top:1px solid #D9DADD; }
+  .p3 .stat{ font-weight:900; }
+  .p3 .note{ position:absolute; left:18mm; right:18mm; bottom:26mm; padding:8mm 0 0; border-top:2px solid var(--preto);
+    font-weight:800; font-size:15pt; letter-spacing:-.02em; line-height:1.3; }
+
+  /* página 4 */
+  .p4 h2{ font-size:36pt; margin-top:16mm; }
+  .p4 .lede{ margin-top:6mm; display:flex; gap:10mm; align-items:baseline; }
+  .p4 .lede strong{ font-weight:800; font-size:13pt; white-space:nowrap; }
+  .p4 .lede p{ font-size:10.5pt; line-height:1.55; color:#4a4c50; }
+  .aulas{ margin-top:10mm; display:grid; grid-template-columns:1fr 1fr; column-gap:12mm; row-gap:12mm; }
+  .aula{ border-top:2px solid var(--preto); padding-top:5mm; }
+  .aula .meta{ display:flex; justify-content:space-between; font-weight:700; font-size:8.5pt; letter-spacing:.2em; color:var(--cinza); }
+  .aula .meta b{ color:var(--preto); font-weight:900; }
+  .aula h3{ margin-top:5mm; font-weight:900; font-size:20pt; letter-spacing:-.04em; line-height:1; text-transform:lowercase; }
+  .aula p{ margin-top:4mm; font-size:10.5pt; line-height:1.55; color:#2b2b2b; }
+  .p4 .band{ position:absolute; left:0; right:0; bottom:0; height:48mm; background:var(--preto); color:#fff; padding:11mm 18mm 0; }
+  .p4 .band .seg{ font-weight:600; font-size:8.5pt; letter-spacing:.22em; text-transform:uppercase; color:var(--prata); }
+  .p4 .band .t{ text-transform:none; margin-top:5mm; font-size:19pt; line-height:1.15; letter-spacing:-.03em; }
+
+  /* página 5 */
+  .p5{ padding:18mm; }
+  .p5 .glow{ position:absolute; right:-60mm; top:-40mm; width:200mm; height:200mm; border-radius:50%;
+    background:radial-gradient(closest-side, rgba(196,198,202,.13), rgba(196,198,202,0)); }
+  .p5 .head{ color:var(--cinza); position:relative; }
+  .p5 h2{ position:relative; font-size:34pt; margin-top:16mm; color:#fff; max-width:170mm; }
+  .stack{ position:relative; margin-top:13mm; }
+  .row{ display:flex; justify-content:space-between; align-items:baseline; padding:4.5mm 0; border-bottom:1px solid rgba(196,198,202,.25);
+    font-size:11pt; font-weight:500; color:#E4E5E7; }
+  .row span:last-child{ font-weight:700; color:#fff; white-space:nowrap; padding-left:6mm; }
+  .row small{ font-size:8.5pt; font-weight:500; color:var(--cinza); letter-spacing:.04em; margin-right:2mm; }
+  .row.total{ border-bottom:none; padding-top:6mm; font-weight:700; font-size:9.5pt; letter-spacing:.2em; color:var(--prata); }
+  .row.total span:last-child{ font-size:13pt; letter-spacing:0; color:var(--prata); text-decoration:line-through; text-decoration-thickness:1px; }
+  .offer{ position:relative; margin-top:18mm; display:flex; align-items:flex-end; justify-content:space-between; gap:8mm; }
+  .offer .bf{ font-weight:900; font-size:14pt; letter-spacing:.22em; color:var(--prata); }
+  .offer .val{ font-weight:900; font-size:84pt; letter-spacing:-.05em; line-height:.85; margin-top:4mm; }
+  .offer .val sup{ font-size:.3em; letter-spacing:0; vertical-align:top; position:relative; top:.35em; margin-right:2mm; font-weight:800; }
+  .offer p{ max-width:66mm; font-size:10.5pt; line-height:1.6; color:#D9DADD; padding-bottom:2mm; }
+  .cta{ position:absolute; left:18mm; right:18mm; bottom:30mm; padding:8mm 6mm; text-align:center;
+    background:linear-gradient(180deg,#E3E4E7,#B9BBC0); color:var(--preto); font-weight:900; font-size:11.5pt; letter-spacing:.06em; }
+  .p5 .pfoot{ color:var(--prata); justify-content:center; letter-spacing:.04em; text-transform:none; font-size:10pt; bottom:15mm; }
+</style>
+</head>
+<body>
+
+<!-- PÁGINA 1 — CAPA -->
+<section class="page dark cover">
+  <div class="photo"></div>
+  <div class="shade"></div>
+  <div class="top">
+    <div class="topbar">
+      <span class="bf silver">BLACK FRIDAY 2026</span>
+      <span class="eyebrow" style="font-size:8pt;color:var(--cinza)">edição 2027</span>
+    </div>
+    <h1 class="t" style="color:#fff">escola<br><span class="silver">estruturada</span><span class="tm">™</span></h1>
+    <div class="sub eyebrow">JURÍDICO + GESTÃO ESCOLAR</div>
+  </div>
+  <div class="names">
+    <div><b>Eduarda de Paula</b>Gestão Escolar</div>
+    <div class="r"><b>Ionara Oliveira</b>Jurídico Educacional</div>
+  </div>
+  <div class="bottom">
+    <p class="lead">Dois kits completos + quatro encontros ao vivo para preparar sua escola para 2027.</p>
+    <div class="foot">
+      <span class="handles">@nasaladadiretora + @ionaraoliveira</span>
+      <span class="price">OFERTA BLACK:<b>R$ 497,00</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- PÁGINA 2 — PROBLEMA E TRANSFORMAÇÃO -->
+<section class="page light inner p2">
+  <div class="head"><span class="eyebrow">Black Escola Estruturada™</span><span class="num">02 / 05</span></div>
+  <h2 class="t">sua escola<br>precisa de mais<br>estrutura.</h2>
+  <p class="q">Sua escola funciona com processos ou tudo ainda depende de você?</p>
+  <div class="body">
+    <p>Matrículas perdidas por falhas no atendimento, contratos desatualizados, cobranças sem padrão, equipe desalinhada e conflitos com famílias são situações que podem comprometer a organização e os resultados da instituição.</p>
+    <p>A Black Escola Estruturada foi criada para ajudar você a enfrentar esses desafios com materiais práticos e orientações que unem gestão escolar e jurídico educacional.</p>
+  </div>
+  <div class="highlight">
+    <div class="eyebrow" style="font-size:8pt;color:var(--cinza)">a transformação</div>
+    <div class="t" style="margin-top:8mm">
+      <span>menos improviso.</span>
+      <span class="silver">mais organização.</span>
+      <span>decisões mais bem<br>fundamentadas.</span>
+    </div>
+  </div>
+</section>
+
+<!-- PÁGINA 3 — OS DOIS KITS -->
+<section class="page light inner p3">
+  <div class="head"><span class="eyebrow">O que você recebe</span><span class="num">03 / 05</span></div>
+  <h2 class="t">dois kits para<br>organizar áreas<br>essenciais da sua escola.</h2>
+
+  <div class="kit">
+    <div class="n">01</div>
+    <div>
+      <h3>Kit de Matrículas e<br>Gestão Escolar 2027</h3>
+      <div class="by">Eduarda de Paula &nbsp;|&nbsp; @nasaladadiretora</div>
+      <p><span class="stat">38 materiais</span> organizados para apoiar processos de captação, atendimento comercial, visitas escolares, apresentação de propostas, matrículas, comunicação com famílias e rotinas da escola.</p>
+      <p class="inc"><b>Inclui materiais como</b> scripts de atendimento, Guia do Visitante, roteiros, portfólio, propostas, fichas, checklists e modelos administrativos.</p>
+    </div>
+  </div>
+
+  <div class="kit">
+    <div class="n">02</div>
+    <div>
+      <h3>Combo Escola Legalmente<br>Segura 2027</h3>
+      <div class="by">Ionara Oliveira &nbsp;|&nbsp; @ionaraoliveira</div>
+      <p>Documentos jurídicos para apoiar a formalização e a organização documental da instituição.</p>
+      <p class="inc"><b>Inclui</b> contrato educacional, edital de matrículas, termos anexos, autorizações de imagem, voz e dados, documentos de proteção de dados, termo de ciência e participação do pai, quadro resumo financeiro e Manual da Família.</p>
+    </div>
+  </div>
+
+  <div class="note">Documentos para adaptar à sua escola, acompanhados de orientações práticas de gestão e jurídico.</div>
+  <div class="pfoot"><span>Black Escola Estruturada™</span><span>@nasaladadiretora + @ionaraoliveira</span></div>
+</section>
+
+<!-- PÁGINA 4 — ENCONTROS -->
+<section class="page light inner p4">
+  <div class="head"><span class="eyebrow">Encontros de aplicação</span><span class="num">04 / 05</span></div>
+  <h2 class="t">quatro encontros.<br>problemas reais.<br>soluções práticas.</h2>
+  <div class="lede">
+    <strong>Com Eduarda e Ionara, ao vivo.</strong>
+    <p>Em cada encontro teremos gestão escolar, jurídico educacional e bate-bola com situações reais da rotina escolar.</p>
+  </div>
+  <div class="aulas">
+    <div class="aula">
+      <div class="meta"><span><b>AULA 1</b></span><span>30/11</span></div>
+      <h3>matrículas sem improviso</h3>
+      <p>Organização do atendimento, negociações, descontos, propostas comerciais e formalização das matrículas.</p>
+    </div>
+    <div class="aula">
+      <div class="meta"><span><b>AULA 2</b></span><span>07/12</span></div>
+      <h3>cobranças e cancelamentos sem caos</h3>
+      <p>Rotinas de cobrança, controle da inadimplência, acordos, rescisões e cuidados jurídicos.</p>
+    </div>
+    <div class="aula">
+      <div class="meta"><span><b>AULA 3</b></span><span>14/12</span></div>
+      <h3>equipe alinhada, famílias bem orientadas</h3>
+      <p>Responsabilidades da equipe, protocolos de comunicação, registros de ocorrências, autorizações e proteção de dados.</p>
+    </div>
+    <div class="aula">
+      <div class="meta"><span><b>AULA 4</b></span><span>21/12</span></div>
+      <h3>decisões difíceis sem agir no impulso</h3>
+      <p>Reclamações, reuniões delicadas, notificações, documentação de ocorrências e gestão de conflitos.</p>
+    </div>
+  </div>
+  <div class="band">
+    <div class="seg">Todos os encontros serão realizados às segundas-feiras</div>
+    <div class="t">Gestão com Eduarda + Jurídico com Ionara<br><span class="silver">+ aplicação prática.</span></div>
+  </div>
+</section>
+
+<!-- PÁGINA 5 — OFERTA -->
+<section class="page dark p5">
+  <div class="glow"></div>
+  <div class="head"><span class="eyebrow" style="font-size:8pt">Oferta especial</span><span class="num">05 / 05</span></div>
+  <h2 class="t">sua escola mais estruturada começa com as decisões que você toma <span class="silver">agora.</span></h2>
+
+  <div class="stack">
+    <div class="row"><span>Kit de Matrículas e Gestão Escolar 2027</span><span>R$ 297,00</span></div>
+    <div class="row"><span>Combo Escola Legalmente Segura 2027</span><span>R$ 497,00</span></div>
+    <div class="row"><span>Programa com quatro encontros ao vivo</span><span><small>valor de referência</small>R$ 2.000,00</span></div>
+    <div class="row total"><span>VALOR TOTAL DE REFERÊNCIA</span><span>R$ 2.794,00</span></div>
+  </div>
+
+  <div class="offer">
+    <div>
+      <div class="bf">BLACK FRIDAY</div>
+      <div class="val silver"><sup>R$</sup>497,00</div>
+    </div>
+    <p>Uma oportunidade de ter os dois kits completos e participar de quatro encontros ao vivo com uma diretora escolar e uma advogada, trabalhando juntas para preparar sua escola para 2027.</p>
+  </div>
+
+  <div class="cta">ADQUIRA AGORA E COMECE A CONSTRUIR UMA ESCOLA MAIS ESTRUTURADA.</div>
+  <div class="pfoot"><span>@nasaladadiretora + @ionaraoliveira</span></div>
+</section>
+
+</body>
+</html>
