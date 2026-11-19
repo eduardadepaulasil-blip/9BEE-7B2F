@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,600;0,700;0,800;0,900;1,800&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#15A5B7;--teal-d:#0B5D69;--night:#062F37;--pink:#EC5280;--mag:#BF1C53;--yellow:#FCD20A;--lime:#B6D133;--orange:#F59839}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1080px;height:1350px;font-family:Nunito,sans-serif;background:var(--night);overflow:hidden}
+.art{position:relative;width:1080px;height:1350px;overflow:hidden;background:radial-gradient(110% 75% at 50% 30%,#055B6C 0%,#033F4B 45%,#01262E 100%)}
+.photo{position:absolute;left:50%;transform:translateX(-50%);top:-6px;width:730px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%),linear-gradient(180deg,#000 78%,transparent 97%);-webkit-mask-composite:source-in;mask-composite:intersect}
+.vig{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 35%,transparent 55%,rgba(0,0,0,.35) 100%);pointer-events:none}
+.tape{position:absolute;height:58px;background:var(--yellow);color:var(--night);font-weight:900;font-size:22px;letter-spacing:.14em;display:flex;align-items:center;white-space:nowrap;gap:28px;padding:0 30px;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:3}
+.tape span::before{content:"✦";margin-right:28px;color:var(--mag)}
+.tape.t1{width:1080px;left:0;top:0;height:46px;font-size:17px;justify-content:center;box-shadow:none}
+.logo{position:absolute;left:52px;top:82px;z-index:4}
+.logo img{height:128px;display:block;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35))}
+.bf{position:absolute;right:56px;top:80px;text-align:right;color:#fff;z-index:4;line-height:.88}
+.bf b{display:block;font-size:82px;font-weight:900;letter-spacing:-.03em}
+.bf b+b{color:var(--yellow)}
+.bf small{display:inline-block;margin-top:14px;font-size:20px;font-weight:800;letter-spacing:.22em;background:var(--pink);padding:8px 14px;border-radius:8px;line-height:1}
+.card{position:absolute;left:56px;right:56px;bottom:56px;background:linear-gradient(135deg,var(--pink) 0%,var(--mag) 100%);border-radius:40px;padding:46px 48px 36px;color:#fff;z-index:5;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.pill{position:absolute;top:-28px;left:48px;background:var(--yellow);color:var(--night);font-weight:900;font-size:22px;letter-spacing:.08em;padding:14px 26px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.kicker{font-size:19px;font-weight:800;letter-spacing:.2em;opacity:.9}
+h1{font-size:72px;font-weight:900;line-height:.98;letter-spacing:-.02em;margin-top:16px}
+h1 mark{background:#fff;color:var(--mag);padding:0 14px;border-radius:10px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.offer{display:flex;align-items:center;gap:24px;margin-top:20px}
+.pct{font-size:116px;font-weight:900;line-height:.8;letter-spacing:-.05em;color:var(--yellow)}
+.pct sup{font-size:58px;vertical-align:top;letter-spacing:0}
+.otext{font-size:28px;font-weight:800;line-height:1.2}
+.otext em{font-style:normal;color:var(--yellow)}
+.rule{border-left:6px solid var(--yellow);padding-left:20px;margin-top:20px;font-size:22px;font-weight:600;line-height:1.38}
+.rule b{font-weight:800}
+.cta{display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:20px;border-top:2px solid rgba(255,255,255,.35)}
+.cta .when{font-size:21px;font-weight:700;line-height:1.3}
+.cta .when b{display:block;font-size:27px;font-weight:900}
+.cta .btn{background:#fff;color:var(--mag);font-weight:900;font-size:23px;letter-spacing:.06em;padding:20px 30px;border-radius:999px;white-space:nowrap}
+.logo.ph{width:250px;height:128px;border:3px dashed rgba(255,255,255,.7);border-radius:20px;color:#fff;font-weight:900;font-size:26px;letter-spacing:.12em;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.15}
+</style></head>
+<body><div class="art">
+  <img class="photo" src="foto2-sem-logo.png"><div class="vig"></div>
+  <div class="tape t1"><span>BLACK FRIDAY</span><span>ESCOLA ABERTA 28/11</span><span>BLACK FRIDAY</span><span>MATRÍCULAS 2027</span><span>BLACK FRIDAY</span></div>
+  <div class="logo ph">SUA LOGO<br>AQUI</div>
+  <div class="bf"><b>Black</b><b>Friday</b><small>MATRÍCULAS 2027</small></div>
+  <div class="card">
+    <div class="pill">ESCOLA ABERTA · SÁBADO, 28/11 · 9H ÀS 12H</div>
+    <div class="kicker">OFERTA BLACK FRIDAY</div>
+    <h1><mark>Matrícula Premiada</mark></h1>
+    <div class="offer"><div class="pct">50<sup>%</sup></div><div class="otext">OFF na 1ª parcela da anuidade<br><em>+ brinde personalizado</em> para seu filho</div></div>
+    <div class="rule"><b>Um presente especial para seu filho!</b> Desconto e brinde garantidos para matrículas efetivadas no dia 28/11.</div>
+    <div class="cta">
+      <div class="when"><b>Matrícula efetivada em 28/11</b>na nossa Escola Aberta</div>
+      <div class="btn">AGENDE SUA VISITA</div>
+    </div>
+  </div>
+</div></body></html>
