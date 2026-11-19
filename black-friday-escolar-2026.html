@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Black Friday Escolar 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  :root { --ink:#141414; --wine:#7A3046; --wine-soft:#F4ECEE; --grey:#6B6B6B; --line:#DCDCDC; --paper:#FCFBF9; --panel:#F2F1EE; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Montserrat', 'Noto Color Emoji', sans-serif; color: var(--ink); background: var(--paper); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 210mm; height: 297mm; padding: 11mm 15mm 11mm; position: relative; overflow: hidden; background: var(--paper); page-break-after: always; display: flex; flex-direction: column; }
+  .page:last-child { page-break-after: auto; }
+
+  .topbar { display: flex; justify-content: space-between; align-items: center; font-size: 7pt; letter-spacing: .22em; font-weight: 600; color: var(--grey); padding-bottom: 3mm; border-bottom: .3mm solid var(--line); }
+  .topbar b { color: var(--ink); font-weight: 800; }
+  .topbar .pg { color: var(--wine); }
+
+  .eyebrow { font-size: 7.5pt; letter-spacing: .28em; font-weight: 700; color: var(--wine); text-transform: uppercase; }
+
+  /* PAGE 1 */
+  .hero { margin-top: 5mm; display: grid; grid-template-columns: 1fr 62mm; gap: 8mm; align-items: end; }
+  h1 { font-size: 35pt; line-height: .95; font-weight: 900; letter-spacing: -.02em; margin-top: 2.5mm; }
+  h1 span { color: var(--wine); }
+  .subtitle { font-size: 12pt; font-weight: 600; margin-top: 3mm; line-height: 1.3; }
+  .intro { font-size: 8.8pt; line-height: 1.55; color: #333; }
+  .dates { margin-top: 4.5mm; display: grid; grid-template-columns: repeat(3, 1fr); border-top: .6mm solid var(--ink); border-bottom: .3mm solid var(--line); }
+  .dates div { padding: 2.4mm 0; }
+  .dates div + div { padding-left: 5mm; border-left: .3mm solid var(--line); }
+  .dates small { display: block; font-size: 6.8pt; letter-spacing: .18em; font-weight: 700; color: var(--grey); text-transform: uppercase; }
+  .dates strong { display: block; font-size: 13pt; font-weight: 800; margin-top: .8mm; }
+  .dates strong em { font-style: normal; color: var(--wine); }
+
+  .offers { margin-top: 1mm; flex: 1; display: flex; flex-direction: column; }
+  .offer { flex: 1; display: grid; grid-template-columns: 52mm 1fr; gap: 5mm; padding: 2.6mm 0; border-bottom: .3mm solid var(--line); align-items: center; }
+  .offer:last-child { border-bottom: none; }
+  .big { font-weight: 900; color: var(--wine); line-height: .85; letter-spacing: -.03em; font-size: 42pt; white-space: nowrap; }
+  .big sup { font-size: .45em; vertical-align: top; position: relative; top: .1em; letter-spacing: 0; margin-left: .5mm; }
+  .big .unit { font-size: 11.5pt; display: block; letter-spacing: .02em; color: var(--ink); margin-top: 1.6mm; font-weight: 800; text-transform: uppercase; }
+  .big.sm { font-size: 33pt; }
+  .num { font-size: 6.8pt; font-weight: 700; letter-spacing: .22em; color: var(--grey); text-transform: uppercase; }
+  .offer h3 { font-size: 11.5pt; font-weight: 800; letter-spacing: .01em; margin-top: .5mm; text-transform: uppercase; }
+  .cond { font-size: 9pt; font-weight: 700; color: var(--wine); margin-top: .8mm; line-height: 1.35; }
+  .slogan { font-size: 8.6pt; font-style: italic; font-weight: 500; margin-top: 1.2mm; padding-left: 3mm; border-left: .6mm solid var(--wine); line-height: 1.4; }
+  .desc { font-size: 8.3pt; color: #444; margin-top: 1.1mm; line-height: 1.4; }
+
+  .foot { margin-top: 2mm; padding-top: 2mm; border-top: .3mm solid var(--line); font-size: 6.8pt; color: var(--grey); letter-spacing: .06em; display: flex; justify-content: space-between; }
+
+  /* PAGE 2 */
+  .duda { margin-top: 5mm; background: var(--ink); color: #fff; padding: 6mm 7mm; display: grid; grid-template-columns: 1fr 52mm; gap: 7mm; }
+  .duda .eyebrow { color: #D9A7B5; }
+  .duda h2 { font-size: 22pt; font-weight: 900; line-height: 1; margin-top: 2.5mm; letter-spacing: -.01em; }
+  .duda h2 span { color: #D9A7B5; }
+  .duda .quote { font-size: 10pt; font-style: italic; font-weight: 500; margin-top: 3.5mm; line-height: 1.45; color: #EDEDED; }
+  .duda .note { font-size: 8.6pt; margin-top: 3mm; line-height: 1.5; color: #C9C9C9; }
+  .when { background: var(--wine); padding: 5mm; display: flex; flex-direction: column; justify-content: center; }
+  .when small { font-size: 6.6pt; letter-spacing: .2em; font-weight: 700; text-transform: uppercase; color: #F0D6DD; }
+  .when .d { font-size: 30pt; font-weight: 900; line-height: 1; margin-top: 1.5mm; }
+  .when .d2 { font-size: 9pt; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; margin-top: 1mm; }
+  .when hr { border: none; border-top: .3mm solid rgba(255,255,255,.35); margin: 3.5mm 0; }
+  .when .h { font-size: 17pt; font-weight: 800; margin-top: 1mm; }
+
+  .cols { margin-top: 5mm; display: grid; grid-template-columns: 1fr 1fr; gap: 7mm; flex: 1; }
+  h4 { font-size: 10pt; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; padding-bottom: 2.2mm; border-bottom: .6mm solid var(--ink); margin-bottom: 2mm; display: flex; justify-content: space-between; align-items: baseline; }
+  h4 small { font-size: 6.6pt; color: var(--grey); letter-spacing: .16em; font-weight: 600; }
+  .steps { list-style: none; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 9mm 1fr; gap: 2mm; padding: 2.6mm 0; border-bottom: .3mm solid var(--line); font-size: 8.7pt; line-height: 1.42; align-items: start; }
+  .steps li::before { content: counter(s, decimal-leading-zero); font-weight: 900; font-size: 12pt; color: var(--wine); line-height: 1; padding-top: .4mm; }
+  .steps li b { font-weight: 700; }
+
+  .wa { background: var(--panel); padding: 3.8mm 4.5mm; font-size: 8.2pt; line-height: 1.45; border-left: .9mm solid var(--wine); }
+  .wa p + p { margin-top: 1.4mm; }
+  .wa .lead { font-weight: 800; }
+  .wa .meta { line-height: 1.6; }
+  .ph { color: var(--wine); font-weight: 700; }
+
+  .canva { margin-top: 4mm; }
+  .card { border: .4mm solid var(--ink); padding: 3.2mm 4mm; text-align: center; }
+  .card .c1 { font-size: 13pt; font-weight: 900; letter-spacing: .04em; }
+  .card .c1 span { color: var(--wine); }
+  .card .c2 { font-size: 8pt; font-weight: 700; color: var(--wine); margin-top: 1mm; letter-spacing: .08em; }
+  .card .c3 { font-size: 8.6pt; font-weight: 800; margin-top: 1.6mm; letter-spacing: .03em; }
+  .card .c4 { display: inline-block; background: var(--wine-soft); color: var(--wine); font-weight: 800; font-size: 8.4pt; padding: 1.4mm 3.5mm; margin-top: 1.6mm; letter-spacing: .04em; }
+  .card .c5 { font-size: 11pt; font-weight: 900; margin-top: 2mm; letter-spacing: .1em; }
+  .card .c6 { font-size: 8pt; font-weight: 700; color: var(--grey); letter-spacing: .1em; margin-top: .5mm; }
+  .card .c7 { font-size: 7.8pt; margin-top: 1.4mm; color: #444; line-height: 1.4; }
+  .card .c8 { display: inline-block; background: var(--ink); color: #fff; font-weight: 800; font-size: 8pt; letter-spacing: .14em; padding: 1.8mm 5mm; margin-top: 2mm; }
+  .card .c9 { font-size: 7.8pt; font-weight: 700; color: var(--wine); margin-top: 1.6mm; }
+
+  .warn { margin-top: 4mm; background: var(--wine-soft); padding: 4mm 5mm; display: grid; grid-template-columns: 36mm 1fr; gap: 5mm; align-items: center; }
+  .warn strong { font-size: 8.4pt; font-weight: 900; letter-spacing: .12em; color: var(--wine); text-transform: uppercase; line-height: 1.3; }
+  .warn p { font-size: 8.5pt; line-height: 1.5; color: #2a2a2a; }
+  .warn p b { font-weight: 800; }
+</style>
+</head>
+<body>
+
+<!-- PÁGINA 1 -->
+<section class="page">
+  <div class="topbar"><span><b>CLUBE DE DIRETORES</b> &nbsp;|&nbsp; @nasaladadiretora</span><span class="pg">01 / 02</span></div>
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Guia prático · Captação de matrículas</div>
+      <h1>BLACK FRIDAY<br><span>ESCOLAR 2026</span></h1>
+      <div class="subtitle">5 ofertas prontas para conquistar <span style="white-space:nowrap">matrículas em 2027</span></div>
+    </div>
+    <p class="intro">A Black Friday é uma oportunidade para a escola transformar famílias interessadas em novas matrículas, preencher vagas disponíveis e apresentar condições comerciais especiais para 2027.</p>
+  </div>
+
+  <div class="dates">
+    <div><small>Data oficial</small><strong>27 de novembro</strong></div>
+    <div><small>Campanha pode ir até</small><strong><em>30/11</em></strong></div>
+    <div><small>Ou ação especial até</small><strong><em>05/12</em></strong></div>
+  </div>
+
+  <div class="offers">
+    <div class="offer">
+      <div class="big">50<sup>%</sup><span class="unit">OFF + brinde</span></div>
+      <div>
+        <div class="num">Oferta 1</div>
+        <h3>Matrícula Premiada</h3>
+        <div class="cond">50% OFF na primeira parcela + brinde personalizado</div>
+        <div class="slogan">“50% de desconto na primeira parcela e um presente especial para seu filho!”</div>
+        <div class="desc">A escola concede 50% de desconto na primeira parcela da anuidade e entrega um brinde personalizado para a criança.</div>
+      </div>
+    </div>
+
+    <div class="offer">
+      <div class="big">50<sup>%</sup><span class="unit">OFF em dobro</span></div>
+      <div>
+        <div class="num">Oferta 2</div>
+        <h3>Black em Dobro</h3>
+        <div class="cond">50% OFF na primeira parcela de cada criança + uma camiseta de uniforme para cada uma</div>
+        <div class="slogan">“Matriculem juntos. Ganhem juntos!”</div>
+        <div class="desc">Válido para dois irmãos ou duas famílias amigas que efetivarem as matrículas durante a campanha.</div>
+      </div>
+    </div>
+
+    <div class="offer">
+      <div class="big">100<sup>%</sup><span class="unit">3 meses grátis</span></div>
+      <div>
+        <div class="num">Oferta 3</div>
+        <h3>Alimentação por Nossa Conta</h3>
+        <div class="cond">3 meses de alimentação gratuita</div>
+        <div class="slogan">“Mais praticidade para sua família e alimentação saudável para seu filho. Os três primeiros meses são por nossa conta!”</div>
+        <div class="desc">A escola oferece 100% de desconto no pacote de alimentação dos três primeiros meses letivos de 2027.</div>
+      </div>
+    </div>
+
+    <div class="offer">
+      <div class="big">3x<span class="unit">sem juros + kit</span></div>
+      <div>
+        <div class="num">Oferta 4</div>
+        <h3>Matrícula Facilitada</h3>
+        <div class="cond">Primeira parcela em até 3x sem juros + kit de boas-vindas</div>
+        <div class="slogan">“Garanta a vaga agora. A gente facilita o começo!”</div>
+        <div class="desc">A escola parcela a primeira parcela da anuidade em até três vezes, com vencimentos previamente definidos.</div>
+      </div>
+    </div>
+
+    <div class="offer">
+      <div class="big sm">25<sup>%</sup>+25<sup>%</sup><span class="unit">parcela + material</span></div>
+      <div>
+        <div class="num">Oferta 5</div>
+        <h3>Black 25 + 25</h3>
+        <div class="cond">25% OFF na primeira parcela + 25% OFF no material escolar</div>
+        <div class="slogan">“Dois descontos especiais para começar 2027 com tudo!”</div>
+        <div class="desc">A escola oferece os dois benefícios para novas matrículas efetivadas durante a campanha.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>As ofertas são alternativas e não cumulativas — veja a observação importante na página 2.</span><span>Black Friday Escolar 2026</span></div>
+</section>
+
+<!-- PÁGINA 2 -->
+<section class="page">
+  <div class="topbar"><span><b>CLUBE DE DIRETORES</b> &nbsp;|&nbsp; @nasaladadiretora</span><span class="pg">02 / 02</span></div>
+
+  <div class="duda">
+    <div>
+      <div class="eyebrow">Sugestão da Duda</div>
+      <h2>BLACK FRIDAY DE<br><span>PORTAS ABERTAS</span></h2>
+      <p class="quote">“Um dia especial para conhecer nossa escola. Uma oportunidade única para garantir sua vaga em 2027!”</p>
+      <p class="note">Minha sugestão é transformar a Black Friday em um evento presencial de captação de alunos.</p>
+    </div>
+    <div class="when">
+      <small>Data sugerida</small>
+      <div class="d">28/11</div>
+      <div class="d2">Sábado · 2026</div>
+      <hr>
+      <small>Horário sugerido</small>
+      <div class="h">9h às 12h</div>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h4>Passo a passo <small>PLANO DE AÇÃO</small></h4>
+      <ol class="steps">
+        <li><span>Escolha uma das cinco ofertas e defina as vagas disponíveis.</span></li>
+        <li><span>Crie uma arte de divulgação com a condição especial.</span></li>
+        <li><span>Entre em contato com famílias que já solicitaram informações ou visitaram a escola.</span></li>
+        <li><span>Crie um grupo VIP de WhatsApp com adesão voluntária para divulgar a oferta e o evento.</span></li>
+        <li><span>Convide as famílias para o Portas Abertas no dia 28/11.</span></li>
+        <li><span>Organize uma experiência para as crianças: musicalização, contação de histórias, oficina ou atividade pedagógica.</span></li>
+        <li><span>Prepare a equipe para receber as famílias, apresentar a escola e realizar matrículas.</span></li>
+        <li><span>Ofereça a condição especial às famílias que efetivarem a matrícula dentro do prazo divulgado.</span></li>
+      </ol>
+    </div>
+
+    <div>
+      <h4>Comunicação pronta <small>WHATSAPP</small></h4>
+      <div class="wa">
+        <p class="lead">🚨 VEM AÍ A BLACK FRIDAY DA <span class="ph">[NOME DA ESCOLA]</span>!</p>
+        <p>Estamos preparando condições especiais para as matrículas de 2027!</p>
+        <p>No dia 28/11, nossa escola estará de portas abertas para receber sua família, com atividades especiais para as crianças, visitas aos nossos espaços e uma oportunidade exclusiva para garantir a matrícula.</p>
+        <p>🎁 <span class="ph">[INSERIR OFERTA ESCOLHIDA]</span></p>
+        <p class="meta">📅 28 de novembro<br>⏰ 9h às 12h<br>📍 <span class="ph">[ENDEREÇO]</span></p>
+        <p><b>Quer participar? Responda QUERO AGENDAR!</b></p>
+      </div>
+
+      <div class="canva">
+        <h4>Texto para arte <small>EDITÁVEL NO CANVA</small></h4>
+        <div class="card">
+          <div class="c1">BLACK FRIDAY <span>2027</span></div>
+          <div class="c2">[NOME DA ESCOLA]</div>
+          <div class="c3">UM DIA ESPECIAL PARA CONHECER NOSSA ESCOLA!</div>
+          <div class="c4">[OFERTA ESCOLHIDA EM DESTAQUE]</div>
+          <div class="c5">PORTAS ABERTAS</div>
+          <div class="c6">28 DE NOVEMBRO | 9H ÀS 12H</div>
+          <div class="c7">Atividades para as crianças, visita guiada e condições especiais de matrícula.</div>
+          <div class="c8">AGENDE SUA VISITA!</div>
+          <div class="c9">[WHATSAPP DA ESCOLA]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <strong>Observação<br>importante</strong>
+    <p><b>As ofertas são alternativas e não cumulativas.</b> Cada escola deve avaliar os custos, a disponibilidade de vagas, as condições contratuais e a viabilidade financeira antes da divulgação. Informar claramente prazo, regras e critérios de participação.</p>
+  </div>
+
+  <div class="foot"><span>Clube de Diretores · Material exclusivo para assinantes</span><span>@nasaladadiretora</span></div>
+</section>
+
+</body>
+</html>
