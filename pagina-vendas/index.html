@@ -39,6 +39,10 @@ p{margin:0}
 .hero h1 .l2{color:var(--prata)}
 .hero h1 sup{font-size:.22em;font-weight:600;letter-spacing:0;vertical-align:top;position:relative;top:.5em}
 .hero .tag{margin:26px 0 22px;font-weight:800;font-size:13px;letter-spacing:.32em}
+.hero h1.h1-frase{font-size:clamp(40px,5.2vw,66px);line-height:.95}
+.benef{list-style:none;padding:0;margin:26px 0 32px;display:grid;gap:12px;max-width:44ch}
+.benef li{position:relative;padding-left:30px;font-weight:600;font-size:17px;line-height:1.4}
+.benef li::before{content:"✓";position:absolute;left:0;top:0;font-weight:900;color:var(--prata)}
 .preco-hero{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin:30px 0 22px}
 .preco-hero s{color:var(--cinza);font-weight:600;font-size:17px}
 .preco-hero strong{font-weight:900;font-size:34px;letter-spacing:-.03em}
@@ -170,13 +174,17 @@ p{margin:0}
 <header class="hero dark">
   <div class="wrap">
     <div class="hero-txt">
-      <p class="eyebrow">Para diretoras e donas de escola</p>
-      <h1>escola<br><span class="l2">estruturada</span><sup>™</sup></h1>
-      <p class="tag">JURÍDICO + GESTÃO ESCOLAR</p>
-      <p class="lead">Dois kits completos e quatro encontros ao vivo com uma diretora escolar e uma advogada, trabalhando juntas para preparar sua escola para 2027.</p>
-      <div class="preco-hero"><s>R$ 2.794,00</s><strong>R$ 497,00</strong></div>
-      <a class="btn cta" href="#oferta">Quero minha escola estruturada</a>
-      <p class="nota">Encontros ao vivo às segundas-feiras, de 30/11 a 21/12.</p>
+      <p class="eyebrow">Escola Estruturada™ · Jurídico + Gestão Escolar</p>
+      <h1 class="h1-frase">sua escola não precisa de mais esforço.<br><span class="l2">precisa de estrutura.</span></h1>
+      <p class="lead" style="margin-top:26px">Se tudo ainda passa por você, o problema não é falta de dedicação. Em 2027, sua escola pode funcionar com processos claros e decisões seguras.</p>
+      <ul class="benef">
+        <li>Matrículas fechadas com processo, não com sorte.</li>
+        <li>Documentos que protegem as decisões que você toma.</li>
+        <li>Cobranças, cancelamentos e inclusão sem improviso.</li>
+        <li>Uma diretora e uma advogada olhando o mesmo problema com você.</li>
+      </ul>
+      <a class="btn cta" href="#oferta">Quero estruturar minha escola</a>
+      <p class="nota">Começa em 30/11 · encontros ao vivo às segundas-feiras</p>
     </div>
     <div class="hero-foto">
       <img src="eduarda-ionara.jpg" alt="Eduarda de Paula e Ionara Oliveira" width="1122" height="1402">
