@@ -4,7 +4,7 @@ const pptxgen = require(process.env.PPTXGEN || 'pptxgenjs');
 const { applyTheme } = require(process.env.APPLY_THEME);
 
 const ROOT = path.resolve(__dirname, '..');
-const OUT = path.join(ROOT, 'AULA_OS_7_ERROS_2027.pptx');
+const OUT = path.join(ROOT, 'AULA_7_ERROS_2027_VERSAO_FINAL.pptx');
 const FOTO_D = path.join(ROOT, 'assets/foto-slide-direita.jpg');
 const FOTO_E = path.join(ROOT, 'assets/foto-slide-esquerda.jpg');
 
@@ -70,24 +70,34 @@ function slideErroIntro(sec, num, tema, pergunta, apoio) {
   return s;
 }
 
-function slideGJ(sec, num, tema, frase, gestao, juridico) {
+function slideCaso(sec, num, tema, frase, gestao, juridico, caso, pergunta, acao) {
   const s = pres.addSlide({ masterName: 'CLARO', sectionTitle: sec });
-  eyebrow(s, `ERRO ${num}  ·  ${tema}  ·  GESTÃO + JURÍDICO`, C.accent2);
-  title(s, frase, { x: M, y: 1.15, w: 11.5, h: 1.6, fontSize: 34, color: C.text1 });
-  // painel jurídico: metade direita escura, sangrando até a borda
-  const top = 3.05, colW = W / 2;
-  s.addShape(pres.shapes.RECTANGLE, { x: colW, y: top, w: colW, h: H - top, fill: { color: C.text1 }, line: { type: 'none' }, objectName: 'painel-juridico' });
-  const col = (x, head, sub, items, cHead, cSub, cItem, cNum) => {
-    T(s, head, { x, y: top + 0.45, w: 5.2, h: 0.4, fontFace: BLACK, fontSize: 18, charSpacing: 4, color: cHead });
-    T(s, sub, { x, y: top + 0.85, w: 5.2, h: 0.3, fontFace: MED, fontSize: 11, color: cSub });
+  eyebrow(s, `ERRO ${num}  ·  ${tema}  ·  GESTÃO + JURÍDICO`, C.accent2, 0.55);
+  title(s, frase, { x: M, y: 0.88, w: 11.8, h: 0.6, fontSize: 28, color: C.text1 });
+  const top = 1.62, bot = 4.58, colW = W / 2;
+  s.addShape(pres.shapes.RECTANGLE, { x: colW, y: top, w: colW, h: bot - top, fill: { color: C.text1 }, line: { type: 'none' }, objectName: 'painel-juridico' });
+  const col = (x, head, sub, items, cHead, cSub, cItem, fs) => {
+    T(s, head, { x, y: top + 0.28, w: 5.6, h: 0.35, fontFace: BLACK, fontSize: 15, charSpacing: 3, color: cHead });
+    T(s, sub, { x, y: top + 0.62, w: 5.6, h: 0.25, fontFace: MED, fontSize: 11, color: cSub });
     items.forEach((it, i) => {
-      const y = top + 1.45 + i * 0.68;
-      T(s, String(i + 1).padStart(2, '0'), { x, y: y + 0.04, w: 0.5, h: 0.35, fontFace: XB, fontSize: 12, color: cNum });
-      T(s, it, { x: x + 0.6, y, w: 4.9, h: 0.45, fontFace: SB, fontSize: 20, color: cItem });
+      const y = top + 0.98 + i * 0.6;
+      T(s, String(i + 1).padStart(2, '0'), { x, y: y + 0.03, w: 0.45, h: 0.3, fontFace: XB, fontSize: 11, color: C.accent2 });
+      T(s, it, { x: x + 0.5, y, w: 5.3, h: 0.5, fontFace: SB, fontSize: fs, color: cItem, lineSpacingMultiple: 1.0 });
     });
   };
-  col(M, 'GESTÃO', 'o que acontece na rotina', gestao, C.text1, C.accent2, C.text1, C.accent2);
-  col(colW + 0.6, 'JURÍDICO', 'o que pode surgir a partir disso', juridico, C.background1, C.accent1, C.background1, C.accent2);
+  col(M, 'GESTÃO', 'com Eduarda', gestao, C.text1, C.accent2, C.text1, 16);
+  col(colW + 0.5, 'JURÍDICO  |  PODE OU NÃO PODE?', 'com Ionara', juridico, C.background1, C.accent1, C.background1, 14);
+  // caso do chão da escola
+  const lab = { x: M, w: 2.7, h: 0.5, fontFace: BLACK, fontSize: 11, charSpacing: 2, lineSpacingMultiple: 1.05 };
+  const tx = M + 2.95, tw = W - M - tx;
+  rule(s, M, 4.85, W - 2 * M, '111111', 1.5);
+  T(s, 'CASO DO CHÃO\nDA ESCOLA', Object.assign({ y: 5.02, color: C.text1 }, lab));
+  T(s, caso, { x: tx, y: 4.98, w: tw, h: 0.5, fontFace: MED, fontSize: 14, color: C.text1, lineSpacingMultiple: 1.05 });
+  T(s, [{ text: 'PERGUNTA:  ', options: { fontFace: BLACK, fontSize: 11, charSpacing: 2, color: C.accent2 } }, { text: pergunta, options: { fontFace: XB, fontSize: 15, color: C.text1 } }],
+    { x: tx, y: 5.55, w: tw, h: 0.35 });
+  rule(s, M, 6.08, W - 2 * M, 'C4C6CA', 0.75);
+  T(s, 'AÇÃO DE GESTÃO', Object.assign({ y: 6.22, color: C.accent2 }, lab));
+  T(s, acao, { x: tx, y: 6.18, w: tw, h: 0.55, fontFace: SB, fontSize: 14, color: C.text1, lineSpacingMultiple: 1.05 });
   return s;
 }
 
@@ -161,39 +171,60 @@ pres.addSection({ title: sec });
     T(s, t, { x, y: 5.7, w: sw - 0.4, h: 0.6, fontFace: XB, fontSize: 30, charSpacing: -1, color: i === 2 ? C.background1 : C.accent1 });
   });
 }
-slideGJ(sec, 1, 'MATRÍCULAS', 'um atendimento mal conduzido pode custar mais que uma matrícula.',
-  ['Atendimento sem padrão', 'Descontos sem critérios', 'Falta de acompanhamento'],
-  ['Ofertas contraditórias', 'Acordos não formalizados', 'Conflitos contratuais']);
+slideCaso(sec, 1, 'MATRÍCULAS', 'a matrícula exige critérios claros e legais.',
+  ['Atendimento sem padrão', 'Vagas sem controle', 'Respostas improvisadas'],
+  ['Pode negar matrícula de aluno com deficiência?', 'Pode cobrar valor extra pela inclusão?', 'Pode encerrar o prazo de rematrícula e abrir vagas?'],
+  'Uma mãe recebe a informação de que não há mais vagas e afirma que a negativa ocorreu porque seu filho é autista.',
+  'toda negativa de matrícula é discriminatória?',
+  'Controle de vagas + registro do atendimento + critérios transparentes e não discriminatórios.');
 
 slideErroIntro(sec, 2, 'CONTRATOS E DOCUMENTOS', 'você atualizou os documentos da sua escola ou apenas trocou o ano?');
-slideGJ(sec, 2, 'CONTRATOS E DOCUMENTOS', 'documentos desatualizados. problemas reais.',
-  ['Documentos sem revisão', 'Informações desencontradas', 'Falta de controle'],
-  ['Cláusulas inadequadas', 'Autorizações insuficientes', 'Questionamentos legais']);
+slideCaso(sec, 2, 'CONTRATOS E DOCUMENTOS', 'contrato antigo não protege decisões novas.',
+  ['Contrato com ano apenas alterado', 'Edital sem regras claras', 'Combinados feitos por mensagem'],
+  ['Pode reter valor após desistência da matrícula?', 'Pode alterar regras durante o ano letivo?', 'O que deve constar no edital e no regimento?'],
+  'A família paga a matrícula de 2027, desiste antes das aulas e exige devolução integral.',
+  'o contrato prevê uma solução válida?',
+  'Fluxo de cancelamento + conferência financeira + registro da solicitação.');
 
 slideErroIntro(sec, 3, 'INADIMPLÊNCIA', 'sua escola tem um problema de inadimplência ou de gestão da inadimplência?');
-slideGJ(sec, 3, 'INADIMPLÊNCIA', 'cobranças sem processo podem gerar novos prejuízos.',
-  ['Atrasos sem controle', 'Acordos informais', 'Cancelamentos desorganizados'],
-  ['Cobranças indevidas', 'Multas questionáveis', 'Conflitos em rescisões']);
+slideCaso(sec, 3, 'INADIMPLÊNCIA', 'cobrar errado pode ampliar o prejuízo.',
+  ['Atrasos sem acompanhamento', 'Cobranças que expõem a família', 'Cancelamentos informais'],
+  ['Pode impedir prova ou atividade pedagógica?', 'Pode reter documentos por dívida?', 'Pode recusar rematrícula de inadimplente?'],
+  'Após quatro mensalidades em atraso, a escola impede o aluno de participar de uma atividade escolar.',
+  'qual é o limite legal da cobrança?',
+  'Régua de cobrança + responsável definido + histórico dos acordos.');
 
-slideErroIntro(sec, 4, 'GESTÃO DE PESSOAS', 'sua equipe sabe o que fazer ou precisa perguntar tudo para você?');
-slideGJ(sec, 4, 'GESTÃO DE PESSOAS', 'uma equipe sem orientação pode trazer consequências além do retrabalho.',
-  ['Funções indefinidas', 'Falta de treinamento', 'Orientações contraditórias'],
-  ['Conflitos de atribuições', 'Discussões sobre jornada', 'Possíveis reclamações trabalhistas']);
+slideErroIntro(sec, 4, 'INCLUSÃO ESCOLAR', 'a inclusão da sua escola é planejada ou depende do improviso?', 'Garantir direitos não significa decidir sem critérios.');
+slideCaso(sec, 4, 'INCLUSÃO ESCOLAR', 'inclusão exige avaliação, planejamento e registro.',
+  ['Equipe sem fluxo de inclusão', 'PEI sem acompanhamento', 'Pedidos familiares sem análise'],
+  ['Acompanhante exclusivo é sempre obrigatório?', 'Pode exigir laudo para efetivar matrícula?', 'Pode reduzir jornada sem análise individual?'],
+  'A mãe exige acompanhante exclusivo e ameaça denunciar a escola se o pedido não for atendido.',
+  'toda exigência da família é obrigação da escola?',
+  'Acolhimento + avaliação das necessidades + planejamento dos apoios + acompanhamento pedagógico.');
 
 slideErroIntro(sec, 5, 'PROCESSOS E ROTINAS', 'sua escola tem processos ou apenas combinados?', 'E quando algo dá errado, quem assume a responsabilidade?');
-slideGJ(sec, 5, 'PROCESSOS E ROTINAS', 'a falta de processos pode se transformar em uma questão de responsabilidade.',
-  ['Rotinas improvisadas', 'Falhas na execução', 'Ausência de protocolos'],
-  ['Dever de cuidado', 'Responsabilidade civil', 'Dificuldade de comprovação']);
+slideCaso(sec, 5, 'PROCESSOS E ROTINAS', 'uma ocorrência exige protocolo, não improviso.',
+  ['Ocorrências sem registro', 'Equipe sem fluxo de resposta', 'Câmeras sem procedimento'],
+  ['A escola responde por toda lesão no recreio?', 'Pode enviar vídeo com outros alunos?', 'Quando investigar bullying e acionar a rede?'],
+  'Um aluno se machuca após ser empurrado no recreio. A família exige vídeo e despesas médicas.',
+  'qual deve ser a primeira providência?',
+  'Atendimento imediato + comunicação à família + registro + acompanhamento da ocorrência.');
 
 slideErroIntro(sec, 6, 'FAMÍLIAS E RECLAMAÇÕES', 'uma reclamação simples pode virar uma grande dor de cabeça.', 'Sua equipe sabe como agir?');
-slideGJ(sec, 6, 'FAMÍLIAS E RECLAMAÇÕES', 'quando a comunicação falha, o conflito cresce.',
-  ['Respostas no impulso', 'Versões contraditórias', 'Ausência de registros'],
-  ['Exposição de informações', 'Notificações formais', 'Possíveis responsabilizações']);
+slideCaso(sec, 6, 'FAMÍLIAS E RECLAMAÇÕES', 'acolher não é aceitar ofensas ou exigências.',
+  ['Respostas dadas no impulso', 'Reuniões sem registro', 'Equipe exposta a conflitos'],
+  ['A família pode exigir demissão de professor?', 'Pode acessar ocorrência de outro aluno?', 'A escola pode encerrar atendimento ofensivo?'],
+  'Uma mãe grita com a coordenadora e exige que outro aluno seja retirado da turma.',
+  'como acolher sem ceder a exigências indevidas?',
+  'Acolher + estabelecer limites + apurar + registrar + responder formalmente.');
 
 slideErroIntro(sec, 7, 'DECISÕES DA DIREÇÃO', 'quantas decisões você já tomou para resolver um problema e acabou criando outro?');
-slideGJ(sec, 7, 'DECISÕES DA DIREÇÃO', 'boas intenções não substituem decisões bem fundamentadas.',
-  ['Decisões impulsivas', 'Exceções sem critérios', 'Falta de documentação'],
-  ['Riscos contratuais', 'Questões trabalhistas', 'Consequências legais']);
+slideCaso(sec, 7, 'DECISÕES DA DIREÇÃO', 'autonomia exige fundamento e documentação.',
+  ['Sanções decididas no calor do momento', 'Exceções sem critérios', 'Decisões sem respaldo escrito'],
+  ['Pode suspender aluno?', 'Pode determinar transferência compulsória?', 'Pode expor nome de aluno em comunicado coletivo?'],
+  'Após ocorrências reiteradas, a direção informa que o aluno não poderá continuar no próximo ano.',
+  'o regimento sustenta essa decisão?',
+  'Apuração dos fatos + acompanhamento pedagógico + registros + avaliação da decisão.');
 
 // ================= REFLEXÃO =================
 sec = 'Reflexão e transformação';
