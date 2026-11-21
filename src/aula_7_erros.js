@@ -319,7 +319,7 @@ pres.addSection({ title: sec });
   eyebrow(s, 'BÔNUS EXCLUSIVOS', C.accent2);
   title(s, 'quem chega primeiro, recebe mais.', { x: M, y: 1.1, w: 11.8, h: 1.0, fontSize: 40, color: C.background1 });
   const rows = [
-    { big: 'TODAS', sub: 'as compradoras', txt: 'Gravação da aula de 20/11.', hi: false },
+    { big: 'TODAS', sub: 'as compradoras', txt: 'Gravação da aula de 21/11.', hi: false },
     { big: '20 PRIMEIRAS', sub: 'compradoras', txt: 'Acesso ao Escola Plural, de Ionara Oliveira, e ao Escola Magnética, de Eduarda de Paula.', hi: true },
     { big: '10 PRIMEIRAS', sub: 'compradoras', txt: 'Participação no sorteio de uma consultoria VIP individual com Eduarda e Ionara.', hi: true },
   ];
