@@ -267,7 +267,7 @@ pres.addSection({ title: sec });
   const s = pres.addSlide({ masterName: 'OFERTA_CLARO', sectionTitle: sec });
   eyebrow(s, 'ENCONTROS DE APLICAÇÃO · AO VIVO', C.accent2);
   title(s, 'quatro encontros. uma dor central por semana.', { x: M, y: 1.15, w: 11.5, h: 1.3, fontSize: 36, color: C.text1 });
-  const aulas = [['30/11', 'Matrículas sem improviso'], ['07/12', 'Cobranças e cancelamentos sem caos'], ['14/12', 'Equipe alinhada, famílias bem orientadas'], ['21/12', 'Decisões difíceis sem agir no impulso']];
+  const aulas = [['30/11', 'Matrículas sem improviso'], ['07/12', 'Cobranças, cancelamentos e inclusão escolar'], ['14/12', 'Equipe alinhada, famílias bem orientadas'], ['21/12', 'Decisões difíceis sem agir no impulso']];
   const cw = (W - 2 * M - 0.9) / 4;
   aulas.forEach(([d, t], i) => {
     const x = M + i * (cw + 0.3);
@@ -283,7 +283,39 @@ pres.addSection({ title: sec });
   ], { x: M, y: 6.33, w: 9, h: 0.45, fontFace: XB, fontSize: 20, charSpacing: -0.5 });
   T(s, 'às segundas-feiras', { x: W - M - 4, y: 6.4, w: 4, h: 0.35, fontFace: MED, fontSize: 13, color: C.accent2, align: 'right' });
 }
-{ // 25 OFERTA
+{ // 25 BÔNUS
+  const s = pres.addSlide({ masterName: 'OFERTA', sectionTitle: sec });
+  eyebrow(s, 'BÔNUS EXCLUSIVOS', C.accent2);
+  title(s, 'quem chega primeiro, recebe mais.', { x: M, y: 1.1, w: 11.8, h: 1.0, fontSize: 40, color: C.background1 });
+  const rows = [
+    { big: 'TODAS', sub: 'as compradoras', txt: 'Gravação da aula de 20/11.', hi: false },
+    { big: '20 PRIMEIRAS', sub: 'compradoras', txt: 'Acesso ao Escola Plural, de Ionara Oliveira, e ao Escola Magnética, de Eduarda de Paula.', hi: true },
+    { big: '10 PRIMEIRAS', sub: 'compradoras', txt: 'Participação no sorteio de uma consultoria VIP individual com Eduarda e Ionara.', hi: true },
+  ];
+  rows.forEach((r, i) => {
+    const y = 2.55 + i * 1.42;
+    rule(s, M, y, W - 2 * M, '3A3A3A', 0.75);
+    T(s, r.big, { x: M, y: y + (r.hi ? 0.28 : 0.36), w: 5.4, h: 0.75, fontFace: BLACK, fontSize: r.hi ? 38 : 26, charSpacing: -1.5, color: r.hi ? C.background1 : C.accent1, valign: 'top' });
+    T(s, r.sub, { x: M, y: y + (r.hi ? 0.98 : 0.86), w: 5, h: 0.3, fontFace: MED, fontSize: 12, color: C.accent2 });
+    T(s, r.txt, { x: 6.6, y: y + 0.32, w: W - M - 6.6, h: 0.9, fontFace: r.hi ? SB : MED, fontSize: 17, color: r.hi ? C.background1 : C.accent1, lineSpacingMultiple: 1.15 });
+  });
+}
+{ // 26 PRESENTE
+  const s = pres.addSlide({ masterName: 'OFERTA_CLARO', sectionTitle: sec });
+  eyebrow(s, 'PRESENTE DA AULA AO VIVO', C.accent2);
+  title(s, 'hoje, uma diretora será presenteada.', { x: M, y: 1.15, w: 11.8, h: 1.9, fontSize: 48, color: C.text1 });
+  T(s, 'Uma participante da aula ganhará:', { x: M, y: 3.25, w: 8, h: 0.45, fontFace: MED, fontSize: 18, color: C.accent2 });
+  const cw = (W - 2 * M - 0.5) / 2;
+  [['Escola Plural', 'Ionara Oliveira'], ['Escola Magnética', 'Eduarda de Paula']].forEach(([p, a], i) => {
+    const x = M + i * (cw + 0.5);
+    rule(s, x, 4.2, cw, '111111', 2);
+    T(s, '1', { x, y: 4.4, w: 1.1, h: 1.5, fontFace: BLACK, fontSize: 96, charSpacing: -4, color: C.accent1 });
+    T(s, 'acesso ao', { x: x + 1.25, y: 4.62, w: cw - 1.3, h: 0.35, fontFace: MED, fontSize: 15, color: C.accent2 });
+    T(s, p, { x: x + 1.25, y: 4.95, w: cw - 1.3, h: 0.6, fontFace: XB, fontSize: 28, charSpacing: -1, color: C.text1 });
+    T(s, a, { x: x + 1.25, y: 5.55, w: cw - 1.3, h: 0.3, fontFace: MED, fontSize: 12, color: C.accent2 });
+  });
+}
+{ // 27 OFERTA
   const s = pres.addSlide({ masterName: 'OFERTA', sectionTitle: sec });
   eyebrow(s, 'OFERTA ESPECIAL', C.accent2);
   title(s, [
@@ -291,17 +323,17 @@ pres.addSection({ title: sec });
     { text: '™', options: { color: C.background1, fontSize: 22, fontFace: SB, superscript: true } },
   ], { x: M, y: 1.1, w: 7, h: 0.9, fontSize: 40 });
   const rows = [
-    ['Kit de Matrículas e Gestão Escolar', '', 'R$ 297,00'],
-    ['Combo Escola Legalmente Segura', '', 'R$ 497,00'],
+    ['Kit de Matrículas e Gestão Escolar 2027', '', 'R$ 297,00'],
+    ['Combo Escola Legalmente Segura 2027', '', 'R$ 497,00'],
     ['Quatro encontros de aplicação', 'valor de referência', 'R$ 2.000,00'],
   ];
   const lx = M, lw = 6.4;
   rows.forEach(([a, sub, b], i) => {
     const y = 2.4 + i * 0.78;
     rule(s, lx, y, lw, '3A3A3A', 0.75);
-    T(s, a, { x: lx, y: y + 0.2, w: 4.6, h: 0.35, fontFace: MED, fontSize: 15, color: C.background1 });
+    T(s, a, { x: lx, y: y + 0.2, w: 4.9, h: 0.35, fontFace: MED, fontSize: 14, color: C.background1 });
     if (sub) T(s, sub, { x: lx, y: y + 0.5, w: 4.6, h: 0.25, fontFace: MED, fontSize: 10, color: C.accent2 });
-    T(s, b, { x: lx + 4.6, y: y + 0.2, w: lw - 4.6, h: 0.35, fontFace: XB, fontSize: 15, color: C.background1, align: 'right' });
+    T(s, b, { x: lx + 4.9, y: y + 0.2, w: lw - 4.9, h: 0.35, fontFace: XB, fontSize: 15, color: C.background1, align: 'right' });
   });
   rule(s, lx, 2.4 + 3 * 0.78, lw, '3A3A3A', 0.75);
   T(s, 'VALOR TOTAL DE REFERÊNCIA', { x: lx, y: 4.95, w: 4.4, h: 0.35, fontFace: SB, fontSize: 11, charSpacing: 3, color: C.accent1 });
@@ -315,8 +347,9 @@ pres.addSection({ title: sec });
   ], { x: 8.35, y: 2.6, w: 4.6, h: 1.3, valign: 'middle' });
   rule(s, 8.35, 4.2, 4.2, '777A80', 0.75);
   T(s, 'Os dois kits + quatro encontros ao vivo.', { x: 8.35, y: 4.45, w: 4.3, h: 0.9, fontFace: MED, fontSize: 17, color: C.background1, lineSpacingMultiple: 1.15 });
+  T(s, '+ BÔNUS EXCLUSIVOS', { x: 8.35, y: 5.45, w: 4.3, h: 0.4, fontFace: BLACK, fontSize: 18, charSpacing: 2, color: C.accent1 });
 }
-{ // 26 ENCERRAMENTO
+{ // 28 ENCERRAMENTO
   const s = pres.addSlide({ masterName: 'FOTO', sectionTitle: sec });
   s.addImage({ path: FOTO_E, x: 0, y: 0, w: 7.2, h: 7.5, objectName: 'foto-eduarda-ionara', altText: 'Eduarda de Paula e Ionara Oliveira' });
   const x = 6.95, w = W - x - M;
