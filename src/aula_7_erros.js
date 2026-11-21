@@ -116,7 +116,7 @@ pres.addSection({ title: sec });
   T(s, 'JURÍDICO + GESTÃO ESCOLAR', { x: M, y: 5.05, w: 6, h: 0.35, fontFace: XB, fontSize: 14, charSpacing: 5, color: C.background1 });
   rule(s, M, 5.75, 5.6, '777A80', 0.75);
   T(s, 'Eduarda de Paula + Ionara Oliveira', { x: M, y: 5.95, w: 6, h: 0.35, fontFace: SB, fontSize: 15, color: C.background1 });
-  T(s, '@nasaladadiretora  |  @ionaraoliveira', { x: M, y: 6.35, w: 6, h: 0.35, fontFace: MED, fontSize: 13, color: C.accent1 });
+  T(s, '@nasaladadiretora  |  @ionaraoliveiracp', { x: M, y: 6.35, w: 6, h: 0.35, fontFace: MED, fontSize: 13, color: C.accent1 });
   T(s, 'Eduarda de Paula', { x: W - 6.9, y: 6.55, w: 3, h: 0.3, fontFace: SB, fontSize: 10, color: C.background1 });
   T(s, 'Ionara Oliveira', { x: W - 3.6, y: 6.55, w: 3, h: 0.3, fontFace: SB, fontSize: 10, color: C.background1, align: 'right' });
 }
@@ -282,7 +282,7 @@ pres.addSection({ title: sec });
   title(s, 'dois kits completos + quatro encontros de aplicação.', { x: M, y: 1.15, w: 11.5, h: 1.6, fontSize: 36, color: C.text1 });
   const items = [
     ['KIT DE MATRÍCULAS E GESTÃO ESCOLAR 2027', 'Eduarda de Paula  |  @nasaladadiretora'],
-    ['COMBO ESCOLA LEGALMENTE SEGURA 2027', 'Ionara Oliveira  |  @ionaraoliveira'],
+    ['COMBO ESCOLA LEGALMENTE SEGURA 2027', 'Ionara Oliveira  |  @ionaraoliveiracp'],
     ['QUATRO ENCONTROS AO VIVO COM EDUARDA E IONARA', 'Gestão + Jurídico + aplicação prática'],
   ];
   const cw = (W - 2 * M - 0.8) / 3;
@@ -392,7 +392,7 @@ pres.addSection({ title: sec });
   ], { x, y: 4.3, w, h: 0.5, fontFace: BLACK, fontSize: 24, charSpacing: -1, color: C.background1 });
   s.addShape(pres.shapes.RECTANGLE, { x, y: 5.05, w, h: 0.75, fill: { color: C.accent1 }, line: { type: 'none' }, objectName: 'botao-cta' });
   T(s, 'ADQUIRA AGORA — R$ 497,00', { x, y: 5.05, w, h: 0.75, fontFace: BLACK, fontSize: 17, charSpacing: 2, color: C.text1, align: 'center', valign: 'middle' });
-  T(s, '@nasaladadiretora + @ionaraoliveira', { x, y: 6.25, w, h: 0.35, fontFace: SB, fontSize: 13, color: C.accent1 });
+  T(s, '@nasaladadiretora + @ionaraoliveiracp', { x, y: 6.25, w, h: 0.35, fontFace: SB, fontSize: 13, color: C.accent1 });
   T(s, 'Eduarda de Paula', { x: 0.45, y: 6.55, w: 3, h: 0.3, fontFace: SB, fontSize: 10, color: C.background1 });
   T(s, 'Ionara Oliveira', { x: 3.6, y: 6.55, w: 2.4, h: 0.3, fontFace: SB, fontSize: 10, color: C.background1, align: 'right' });
 }
