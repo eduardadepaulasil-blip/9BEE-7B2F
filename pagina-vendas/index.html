@@ -2,405 +2,186 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap">
 <style>
-/* Layout: faixas alternadas preto / claro, como os materiais da campanha; uma coluna de leitura de ~1080px */
+/* Layout: faixas preto / claro como o PDF da campanha; página curta em 4 blocos */
 :root{
   --preto:#111111; --grafite:#242424; --prata:#C4C6CA; --cinza:#777A80; --branco:#FFFFFF; --claro:#F4F4F5;
   --linha-escura:#34363a; --linha-clara:#D9DADD; --texto-claro:#2b2c2f;
-  --f:'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --f:'Montserrat','Helvetica Neue',Arial,sans-serif;
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{background:var(--preto);color:var(--branco);font-family:var(--f);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1080px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
-section{padding-block:88px}
-.dark{background:var(--preto);color:var(--branco)}
-.graf{background:var(--grafite);color:var(--branco)}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+section{padding-block:80px}
 .light{background:var(--claro);color:var(--preto)}
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--cinza);margin:0 0 18px}
-.dark .eyebrow,.graf .eyebrow{color:var(--prata)}
-h1,h2,h3{font-weight:900;letter-spacing:-.045em;line-height:.95;margin:0;text-wrap:balance;text-transform:lowercase}
-h2{font-size:clamp(34px,5.4vw,58px)}
-h3{font-size:22px;letter-spacing:-.03em;line-height:1.1}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--prata);margin:0 0 18px}
+.light .eyebrow{color:var(--cinza)}
+h1,h2{font-weight:900;letter-spacing:-.045em;line-height:.95;margin:0;text-wrap:balance;text-transform:lowercase}
+h2{font-size:clamp(32px,5vw,52px)}
 p{margin:0}
-.lead{font-size:clamp(18px,2vw,21px);font-weight:500;line-height:1.5;max-width:40ch}
-.muted{color:var(--cinza)}
-.dark .muted{color:var(--prata)}
-.prata{color:var(--prata)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:16px 30px;background:linear-gradient(180deg,#ECEDEF,#BFC1C6);color:var(--preto);font-weight:900;font-size:15px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:0;cursor:pointer;transition:transform .15s ease, filter .15s ease}
-.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:58px;padding:16px 30px;background:linear-gradient(180deg,#ECEDEF,#BFC1C6);color:var(--preto);font-weight:900;font-size:15px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;transition:filter .15s ease}
+.btn:hover{filter:brightness(1.06)}
 .btn:focus-visible{outline:3px solid var(--branco);outline-offset:3px}
-.light .btn:focus-visible{outline-color:var(--preto)}
-.btn.escuro{background:var(--preto);color:var(--branco)}
 
 /* HERO */
-.hero{padding-block:0;position:relative;overflow:hidden}
-.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;align-items:end;gap:24px;min-height:640px}
-.hero-txt{padding-block:84px 72px;position:relative;z-index:2}
-.hero h1{font-size:clamp(54px,7.4vw,92px);line-height:.84}
-.hero h1 .l2{color:var(--prata)}
-.hero h1 sup{font-size:.22em;font-weight:600;letter-spacing:0;vertical-align:top;position:relative;top:.5em}
-.hero .tag{margin:26px 0 22px;font-weight:800;font-size:13px;letter-spacing:.32em}
-.hero h1.h1-frase{font-size:clamp(38px,4.6vw,58px);line-height:.95}
-.benef{list-style:none;padding:0;margin:26px 0 32px;display:grid;gap:12px;max-width:44ch}
-.benef li{position:relative;padding-left:30px;font-weight:600;font-size:17px;line-height:1.4}
-.benef li::before{content:"✓";position:absolute;left:0;top:0;font-weight:900;color:var(--prata)}
-.preco-hero{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin:30px 0 22px}
-.preco-hero s{color:var(--cinza);font-weight:600;font-size:17px}
-.preco-hero strong{font-weight:900;font-size:34px;letter-spacing:-.03em}
-.hero .nota{margin-top:16px;font-size:13px;color:var(--prata)}
-.hero-foto{position:relative;align-self:stretch;min-height:520px}
-.hero-foto img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:118%;height:auto;max-width:none;max-height:100%;object-fit:cover;object-position:top}
-.hero-foto::after{content:"";position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(180deg,rgba(17,17,17,0),#111)}
-.hero-foto .nomes{position:absolute;z-index:2;left:6%;right:6%;bottom:26px;display:flex;justify-content:space-between;font-size:12px;line-height:1.35;color:#e8e9eb}
-.hero-foto .nomes b{display:block;font-weight:800;font-size:14px;color:#fff}
-.hero-foto .nomes .r{text-align:right}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:stretch}
+.hero-txt{padding-block:80px 72px}
+.hero h1{font-size:clamp(38px,4.8vw,60px)}
+.hero h1 span{color:var(--prata)}
+.hero .lead{margin-top:24px;font-size:clamp(17px,1.8vw,20px);font-weight:500;line-height:1.5;max-width:40ch}
+.benef{list-style:none;padding:0;margin:26px 0 32px;display:grid;gap:12px}
+.benef li{position:relative;padding-left:30px;font-weight:600;line-height:1.4}
+.benef li::before{content:"✓";position:absolute;left:0;font-weight:900;color:var(--prata)}
+.nota{margin-top:14px;font-size:13px;color:var(--prata)}
+.foto{position:relative;min-height:520px}
+.foto img{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:118%;max-width:none;max-height:100%;height:auto;object-fit:cover;object-position:top}
+.foto::after{content:"";position:absolute;inset:auto 0 0 0;height:28%;background:linear-gradient(180deg,rgba(17,17,17,0),#111)}
+.foto .nomes{position:absolute;z-index:2;left:6%;right:6%;bottom:22px;display:flex;justify-content:space-between;font-size:12px;line-height:1.35;color:#e8e9eb}
+.foto .nomes b{display:block;font-weight:800;font-size:14px;color:#fff}
+.foto .nomes .dir{text-align:right}
 
 /* PROBLEMA */
-.dores{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px}
-.dor{border-top:2px solid var(--preto);padding:18px 0 30px}
-.dor b{display:block;font-weight:800;font-size:19px;letter-spacing:-.02em;line-height:1.2;margin-bottom:8px}
-.dor span{color:var(--texto-claro);font-size:15.5px}
-.virada{margin-top:24px;font-weight:900;font-size:clamp(24px,3vw,34px);letter-spacing:-.035em;line-height:1.1;max-width:24ch}
-
-/* DUAS VISÕES */
-.casos{margin-top:48px;display:grid;gap:18px}
-.caso{display:grid;grid-template-columns:1.1fr 1fr 1fr;border:1px solid var(--linha-escura)}
-.caso > div{padding:26px 26px 28px;min-width:0}
-.caso .situ{background:var(--grafite)}
-.caso .lbl{font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--cinza);margin-bottom:10px}
-.caso .situ p{font-weight:700;font-size:18px;line-height:1.35}
-.caso .g p,.caso .j p{font-size:16px;color:#e4e5e7}
-.caso .j{border-left:1px solid var(--linha-escura)}
-.caso .j p{font-weight:600}
+.prob{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.prob .txt{display:grid;gap:16px;color:var(--texto-claro)}
+.frase{margin-top:44px;padding-top:24px;border-top:2px solid var(--preto);font-weight:900;font-size:clamp(24px,3.2vw,36px);letter-spacing:-.04em;line-height:1.08;text-transform:lowercase}
+.frase span{color:var(--cinza)}
 
 /* ENTREGÁVEIS */
-.itens{margin-top:52px;display:grid;gap:0}
-.item{display:grid;grid-template-columns:110px 1fr 220px;gap:28px;padding:36px 0;border-top:1px solid var(--linha-clara);align-items:start}
-.item:last-child{border-bottom:1px solid var(--linha-clara)}
-.item .n{font-weight:900;font-size:56px;letter-spacing:-.06em;line-height:.8;color:var(--prata)}
-.item h3{text-transform:uppercase;font-size:20px;letter-spacing:-.01em}
-.item .por{margin-top:6px;font-size:13px;font-weight:600;color:var(--cinza)}
-.item p.d{margin-top:14px;color:var(--texto-claro);max-width:60ch}
-.chips{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
-.chips span{font-size:13px;font-weight:600;padding:6px 12px;background:var(--branco);border:1px solid var(--linha-clara)}
-.item .valor{text-align:right;font-weight:800;font-size:15px;color:var(--cinza)}
-.item .valor b{display:block;font-size:24px;color:var(--preto);letter-spacing:-.02em}
-
-.agenda{margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px 28px}
-.agenda div{border-top:2px solid var(--preto);padding-top:12px;min-width:0}
-.agenda .dt{font-weight:900;font-size:28px;letter-spacing:-.04em;line-height:1}
-.agenda .tm{margin-top:8px;font-weight:700;font-size:15px;line-height:1.3}
-.agenda .sub{margin-top:6px;font-size:13px;color:var(--cinza);line-height:1.45}
-
-/* BÔNUS */
-.bonus{margin-top:48px;display:grid;gap:0}
-.b{display:grid;grid-template-columns:320px 1fr;gap:32px;padding:30px 0;border-top:1px solid var(--linha-escura);align-items:baseline}
-.b .quem{font-weight:900;font-size:clamp(30px,4vw,46px);letter-spacing:-.05em;line-height:.95}
-.b .quem small{display:block;margin-top:8px;font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--cinza)}
-.b .quem.fraco{color:var(--prata);font-size:clamp(24px,3vw,32px)}
-.b p{font-size:18px;font-weight:600;line-height:1.45;max-width:46ch}
-
-/* ESPECIALISTAS */
-.duo{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.pessoa{background:var(--branco);padding:32px;border:1px solid var(--linha-clara)}
-.pessoa .area{font-size:12px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--cinza)}
-.pessoa h3{margin-top:10px;font-size:30px;text-transform:none}
-.pessoa .ig{margin-top:6px;font-weight:700;font-size:14px;color:var(--cinza)}
-.pessoa p{margin-top:16px;color:var(--texto-claro)}
+.kits{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.kit{border-top:2px solid var(--branco);padding-top:20px;min-width:0}
+.kit h3{margin:0;font-weight:900;font-size:19px;letter-spacing:-.01em;line-height:1.2;text-transform:uppercase}
+.kit .por{margin-top:6px;font-size:13px;font-weight:600;color:var(--cinza)}
+.kit p{margin-top:12px;color:#dcdde0;font-size:16px}
+.kit p b{color:#fff}
+.enc{margin-top:48px;border-top:2px solid var(--branco);padding-top:20px}
+.enc h3{margin:0;font-weight:900;font-size:19px;text-transform:uppercase}
+.enc .por{margin-top:6px;font-size:13px;font-weight:600;color:var(--cinza)}
+.aulas{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.aulas div{min-width:0}
+.aulas .d{font-weight:900;font-size:26px;letter-spacing:-.04em;line-height:1}
+.aulas .t{margin-top:8px;font-weight:700;font-size:15px;line-height:1.3;text-transform:lowercase}
 
 /* OFERTA */
-.oferta .grid{display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:start;margin-top:44px}
-.stack{display:grid}
-.stack .r{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--linha-escura);font-size:16px}
-.stack .r span:last-child{font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums}
-.stack .r small{display:block;font-size:12px;color:var(--cinza)}
-.stack .tot{display:flex;justify-content:space-between;padding-top:20px;font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--prata)}
-.stack .tot s{letter-spacing:0;font-size:20px}
-.caixa{background:var(--grafite);padding:38px 34px}
-.caixa .k{font-size:12px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--prata)}
-.caixa .de{margin-top:18px;color:var(--cinza);font-weight:600}
-.caixa .por{font-weight:900;font-size:clamp(64px,8vw,86px);letter-spacing:-.06em;line-height:.9;margin-top:4px}
-.caixa .por sup{font-size:.3em;letter-spacing:0;vertical-align:top;position:relative;top:.3em;margin-right:6px;color:var(--prata)}
-.caixa ul{list-style:none;padding:0;margin:24px 0 28px;display:grid;gap:10px;font-size:15px}
-.caixa li{padding-left:22px;position:relative}
-.caixa li::before{content:"+";position:absolute;left:0;font-weight:900;color:var(--prata)}
+.of{display:grid;grid-template-columns:1fr 400px;gap:48px;align-items:start;margin-top:40px}
+.r{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid var(--linha-clara);font-size:16px}
+.r span:last-child{font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums}
+.r small{display:block;font-size:12px;color:var(--cinza)}
+.tot{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding-top:18px;font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--cinza)}
+.tot s{letter-spacing:0;font-size:20px;white-space:nowrap}
+.caixa{background:var(--preto);color:var(--branco);padding:36px 32px}
+.caixa .k{font-size:13px;font-weight:900;letter-spacing:.24em;color:var(--prata)}
+.caixa .v{font-weight:900;font-size:clamp(62px,8vw,82px);letter-spacing:-.06em;line-height:.9;margin-top:14px}
+.caixa .v sup{font-size:.3em;letter-spacing:0;vertical-align:top;position:relative;top:.3em;margin-right:6px;color:var(--prata)}
+.caixa p{margin:18px 0 26px;font-size:15px;color:#d6d7da;line-height:1.55}
 .caixa .btn{width:100%}
-.caixa .urg{margin-top:16px;font-size:13px;color:var(--prata);line-height:1.5}
 
-/* PARA QUEM */
-.pq{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.pq ul{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:12px}
-.pq li{padding-left:28px;position:relative;font-size:16px}
-.pq .sim li::before{content:"✓";position:absolute;left:0;font-weight:900}
-.pq .nao li::before{content:"—";position:absolute;left:0;color:var(--cinza)}
-.pq .nao li{color:var(--texto-claro)}
-.pq h3{font-size:18px;letter-spacing:.18em;text-transform:uppercase;font-weight:900}
-
-/* FAQ */
-.faq{margin-top:40px;display:grid}
-.faq details{border-top:1px solid var(--linha-escura);padding:20px 0}
-.faq details:last-child{border-bottom:1px solid var(--linha-escura)}
-.faq summary{cursor:pointer;font-weight:800;font-size:18px;letter-spacing:-.01em;list-style:none;display:flex;justify-content:space-between;gap:20px}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-weight:900;color:var(--prata)}
-.faq details[open] summary::after{content:"–"}
-.faq summary:focus-visible{outline:2px solid var(--prata);outline-offset:4px}
-.faq p{margin-top:12px;color:#d6d7da;max-width:65ch}
-
-.final{text-align:left}
-.final h2{max-width:16ch}
-.rod{padding-block:34px;border-top:1px solid var(--linha-escura);font-size:13px;color:var(--cinza)}
+.rod{padding-block:30px;font-size:13px;color:var(--cinza)}
 .rod .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 
-@media (max-width:900px){
-  section{padding-block:64px}
-  .hero .wrap{grid-template-columns:1fr;min-height:0;gap:0}
-  .hero-txt{padding-block:56px 8px;order:1}
-  .hero-foto img{width:100%;max-height:none;height:100%}
-  .hero-foto{order:2;min-height:0;height:min(118vw,560px);margin-inline:calc(-1 * max(20px, env(safe-area-inset-left, 0px)))}
-  .dores{grid-template-columns:1fr}
-  .caso{grid-template-columns:1fr}
-  .caso .j{border-left:0;border-top:1px solid var(--linha-escura)}
-  .item{grid-template-columns:1fr;gap:12px}
-  .item .valor{text-align:left}
-  .agenda{grid-template-columns:1fr 1fr}
-  .b{grid-template-columns:1fr;gap:10px}
-  .duo,.pq{grid-template-columns:1fr}
-  .oferta .grid{grid-template-columns:1fr}
+@media (max-width:880px){
+  section{padding-block:60px}
+  .hero .wrap{grid-template-columns:1fr;gap:0}
+  .hero-txt{padding-block:52px 8px}
+  .foto{min-height:0;height:min(118vw,540px);margin-inline:calc(-1 * max(20px, env(safe-area-inset-left, 0px)))}
+  .foto img{width:100%;height:100%;max-height:none}
+  .prob,.kits,.of{grid-template-columns:1fr;gap:28px}
+  .aulas{grid-template-columns:1fr 1fr}
+  .caixa{padding:30px 22px}
 }
-@media (max-width:420px){ .agenda{grid-template-columns:1fr} .caixa{padding:30px 22px} }
-@media (prefers-reduced-motion:reduce){ .btn{transition:none} .btn:hover{transform:none} }
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
 </style>
 
-<!-- HERO -->
-<header class="hero dark">
+<header class="hero">
   <div class="wrap">
     <div class="hero-txt">
-      <p class="eyebrow">Escola Estruturada™ · Jurídico + Gestão Escolar</p>
-      <h1 class="h1-frase">sua escola não precisa de mais esforço.<br><span class="l2">precisa de estrutura.</span></h1>
-      <p class="lead" style="margin-top:26px">Se tudo ainda passa por você, o problema não é falta de dedicação. Em 2027, sua escola pode funcionar com processos claros e decisões seguras.</p>
+      <p class="eyebrow">Black Friday 2026 · Jurídico + Gestão Escolar</p>
+      <h1>sua escola não precisa de mais esforço. <span>precisa de estrutura.</span></h1>
+      <p class="lead">Se tudo ainda depende de você, está na hora de mudar isso. Prepare sua escola para 2027 com materiais práticos e orientação de quem vive gestão e jurídico.</p>
       <ul class="benef">
-        <li>Matrículas fechadas com processo, não com sorte.</li>
-        <li>Documentos que protegem as decisões que você toma.</li>
-        <li>Cobranças, cancelamentos e inclusão sem improviso.</li>
-        <li>Uma diretora e uma advogada olhando o mesmo problema com você.</li>
+        <li>Matrículas sem improviso.</li>
+        <li>Documentos atualizados e organizados.</li>
+        <li>Decisões com respaldo de gestão e jurídico.</li>
       </ul>
-      <a class="btn cta" href="#oferta">Quero estruturar minha escola</a>
-      <p class="nota">Começa em 30/11 · encontros ao vivo às segundas-feiras</p>
+      <a class="btn" href="#oferta">Quero estruturar minha escola</a>
+      <p class="nota">Encontros ao vivo a partir de 30/11</p>
     </div>
-    <div class="hero-foto">
+    <div class="foto">
       <img src="eduarda-ionara.jpg" alt="Eduarda de Paula e Ionara Oliveira" width="1122" height="1402">
       <div class="nomes">
         <div><b>Eduarda de Paula</b>Gestão Escolar</div>
-        <div class="r"><b>Ionara Oliveira</b>Jurídico Educacional</div>
+        <div class="dir"><b>Ionara Oliveira</b>Jurídico Educacional</div>
       </div>
     </div>
   </div>
 </header>
 
-<!-- PROBLEMA -->
 <section class="light">
   <div class="wrap">
-    <p class="eyebrow">O problema</p>
-    <h2>sua escola funciona com processos ou tudo ainda depende de você?</h2>
-    <div class="dores">
-      <div class="dor"><b>Matrículas que escapam</b><span>Atendimento sem padrão, descontos sem critério e famílias que visitam e não voltam.</span></div>
-      <div class="dor"><b>Documentos que só trocaram o ano</b><span>Contrato, edital e autorizações que não acompanham as decisões que a escola toma hoje.</span></div>
-      <div class="dor"><b>Cobrança sem processo</b><span>Atrasos sem acompanhamento, acordos por mensagem e cancelamentos sem registro.</span></div>
-      <div class="dor"><b>Inclusão no improviso</b><span>Pedidos das famílias sem análise, PEI sem acompanhamento e equipe sem fluxo.</span></div>
-      <div class="dor"><b>Equipe que pergunta tudo</b><span>Funções indefinidas e orientações que mudam conforme quem responde.</span></div>
-      <div class="dor"><b>Conflitos que crescem</b><span>Reclamações respondidas no impulso, reuniões sem registro e decisões difíceis tomadas no calor do momento.</span></div>
+    <div class="prob">
+      <div>
+        <p class="eyebrow">Escola Estruturada™</p>
+        <h2>sua escola funciona com processos ou tudo ainda depende de você?</h2>
+      </div>
+      <div class="txt">
+        <p>Matrículas perdidas por falhas no atendimento, contratos desatualizados, cobranças sem padrão, equipe desalinhada e conflitos com famílias podem comprometer a organização e os resultados da sua escola.</p>
+        <p>A Escola Estruturada une gestão escolar e jurídico educacional em materiais práticos e encontros ao vivo, para você enfrentar esses desafios com segurança.</p>
+      </div>
     </div>
-    <p class="virada">Muitos problemas de gestão também são jurídicos. E quase sempre a escola só percebe quando já virou conflito.</p>
+    <p class="frase">menos improviso. mais organização. <span>decisões mais bem fundamentadas.</span></p>
   </div>
 </section>
 
-<!-- DUAS VISÕES -->
-<section class="dark">
-  <div class="wrap">
-    <p class="eyebrow">O diferencial</p>
-    <h2>o mesmo problema, analisado por duas especialistas.</h2>
-    <p class="lead muted" style="margin-top:20px">Eduarda mostra como a direção age e qual processo precisa existir. Ionara mostra os direitos, deveres e limites envolvidos. Você sai com as duas respostas, não com metade delas.</p>
-    <div class="casos">
-      <div class="caso">
-        <div class="situ"><div class="lbl">Caso real da rotina</div><p>A família paga a matrícula de 2027, desiste antes das aulas e exige devolução integral.</p></div>
-        <div class="g"><div class="lbl">Gestão · Eduarda</div><p>Fluxo de cancelamento, conferência financeira e registro da solicitação.</p></div>
-        <div class="j"><div class="lbl">Jurídico · Ionara</div><p>O contrato prevê uma solução válida? Pode reter algum valor?</p></div>
-      </div>
-      <div class="caso">
-        <div class="situ"><div class="lbl">Caso real da rotina</div><p>Após quatro mensalidades em atraso, a escola impede o aluno de participar de uma atividade.</p></div>
-        <div class="g"><div class="lbl">Gestão · Eduarda</div><p>Régua de cobrança, responsável definido e histórico dos acordos.</p></div>
-        <div class="j"><div class="lbl">Jurídico · Ionara</div><p>Qual é o limite legal da cobrança? Pode recusar a rematrícula?</p></div>
-      </div>
-      <div class="caso">
-        <div class="situ"><div class="lbl">Caso real da rotina</div><p>Uma mãe exige acompanhante exclusivo para o filho e ameaça denunciar a escola.</p></div>
-        <div class="g"><div class="lbl">Gestão · Eduarda</div><p>Acolhimento, avaliação das necessidades, planejamento dos apoios e acompanhamento pedagógico.</p></div>
-        <div class="j"><div class="lbl">Jurídico · Ionara</div><p>Acompanhante exclusivo é sempre obrigatório? O que a escola deve garantir?</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- O QUE VOCÊ RECEBE -->
-<section class="light">
+<section>
   <div class="wrap">
     <p class="eyebrow">O que você recebe</p>
     <h2>dois kits completos + quatro encontros ao vivo.</h2>
-    <div class="itens">
-      <div class="item">
-        <div class="n">01</div>
-        <div>
-          <h3>Kit de Matrículas e Gestão Escolar 2027</h3>
-          <div class="por">Eduarda de Paula · @nasaladadiretora</div>
-          <p class="d">38 materiais organizados para captação, atendimento comercial, visitas, propostas, matrículas, comunicação com as famílias e rotinas da escola.</p>
-          <div class="chips"><span>Scripts de atendimento</span><span>Guia do Visitante</span><span>Roteiros</span><span>Portfólio</span><span>Propostas</span><span>Fichas</span><span>Checklists</span><span>Modelos administrativos</span></div>
-        </div>
-        <div class="valor">valor<b>R$ 297,00</b></div>
+    <div class="kits">
+      <div class="kit">
+        <h3>Kit de Matrículas e Gestão Escolar 2027</h3>
+        <div class="por">Eduarda de Paula · @nasaladadiretora</div>
+        <p><b>38 materiais</b> para captação, atendimento, visitas, propostas, matrículas e comunicação com as famílias: scripts, Guia do Visitante, roteiros, portfólio, fichas, checklists e modelos administrativos.</p>
       </div>
-      <div class="item">
-        <div class="n">02</div>
-        <div>
-          <h3>Combo Escola Legalmente Segura 2027</h3>
-          <div class="por">Ionara Oliveira · @ionaraoliveiracp</div>
-          <p class="d">Documentos jurídicos para formalizar e organizar a documentação da instituição, prontos para adaptar à sua escola.</p>
-          <div class="chips"><span>Contrato educacional</span><span>Edital de matrículas</span><span>Termos anexos</span><span>Autorizações de imagem, voz e dados</span><span>Proteção de dados</span><span>Termo de ciência e participação do pai</span><span>Quadro resumo financeiro</span><span>Manual da Família</span></div>
-        </div>
-        <div class="valor">valor<b>R$ 497,00</b></div>
+      <div class="kit">
+        <h3>Combo Escola Legalmente Segura 2027</h3>
+        <div class="por">Ionara Oliveira · @ionaraoliveiracp</div>
+        <p>Contrato educacional, edital de matrículas, termos anexos, autorizações de imagem, voz e dados, proteção de dados, termo de ciência e participação do pai, quadro resumo financeiro e <b>Manual da Família</b>.</p>
       </div>
-      <div class="item">
-        <div class="n">03</div>
-        <div>
-          <h3>Quatro encontros de aplicação ao vivo</h3>
-          <div class="por">Eduarda e Ionara juntas · às segundas-feiras</div>
-          <p class="d">Em cada encontro: gestão com Eduarda, jurídico com Ionara e bate-bola de situações reais da rotina escolar.</p>
-          <div class="agenda">
-            <div><div class="dt">30/11</div><div class="tm">Matrículas sem improviso</div><div class="sub">Atendimento, negociações, descontos, propostas e formalização.</div></div>
-            <div><div class="dt">07/12</div><div class="tm">Cobranças, cancelamentos e inclusão escolar</div><div class="sub">Inadimplência e limites legais, rescisões, PEI e direitos dos estudantes.</div></div>
-            <div><div class="dt">14/12</div><div class="tm">Equipe alinhada, famílias bem orientadas</div><div class="sub">Responsabilidades, protocolos de comunicação, registros e proteção de dados.</div></div>
-            <div><div class="dt">21/12</div><div class="tm">Decisões difíceis sem agir no impulso</div><div class="sub">Reclamações, reuniões delicadas, notificações e gestão de conflitos.</div></div>
-          </div>
-        </div>
-        <div class="valor">valor de referência<b>R$ 2.000,00</b></div>
+    </div>
+    <div class="enc">
+      <h3>Quatro encontros de aplicação ao vivo</h3>
+      <div class="por">Com Eduarda e Ionara · às segundas-feiras</div>
+      <div class="aulas">
+        <div><div class="d">30/11</div><div class="t">matrículas sem improviso</div></div>
+        <div><div class="d">07/12</div><div class="t">cobranças, cancelamentos e inclusão escolar</div></div>
+        <div><div class="d">14/12</div><div class="t">equipe alinhada, famílias bem orientadas</div></div>
+        <div><div class="d">21/12</div><div class="t">decisões difíceis sem agir no impulso</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BÔNUS -->
-<section class="dark">
-  <div class="wrap">
-    <p class="eyebrow">Bônus exclusivos</p>
-    <h2>quem chega primeiro, recebe mais.</h2>
-    <div class="bonus">
-      <div class="b"><div class="quem fraco">Todas<small>AS COMPRADORAS</small></div><p>Gravação da aula “Os 7 erros que podem custar caro para sua escola em 2027”, de 21/11.</p></div>
-      <div class="b"><div class="quem">20 primeiras<small>COMPRADORAS</small></div><p>Acesso ao Escola Plural, de Ionara Oliveira, e ao Escola Magnética, de Eduarda de Paula.</p></div>
-      <div class="b"><div class="quem">10 primeiras<small>COMPRADORAS</small></div><p>Participação no sorteio de uma consultoria VIP individual com Eduarda e Ionara.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- QUEM SÃO -->
-<section class="light">
-  <div class="wrap">
-    <p class="eyebrow">Quem conduz</p>
-    <h2>uma diretora e uma advogada, trabalhando juntas.</h2>
-    <div class="duo">
-      <div class="pessoa">
-        <div class="area">Gestão escolar</div>
-        <h3>Eduarda de Paula</h3>
-        <div class="ig">@nasaladadiretora</div>
-        <p>Diretora e fundadora do Instituto Quintino e do Quintino Baby, escolas de educação infantil em Belo Horizonte. Ensina outras donas de escola a organizar matrículas, equipe e rotina com processos que funcionam sem depender só da diretora.</p>
-      </div>
-      <div class="pessoa">
-        <div class="area">Jurídico educacional</div>
-        <h3>Ionara Oliveira</h3>
-        <div class="ig">@ionaraoliveiracp</div>
-        <p>Advogada com atuação no jurídico educacional. Mostra o que a escola pode e não pode fazer em contratos, cobranças, inclusão e conflitos com famílias, para a direção decidir com fundamento.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- OFERTA -->
-<section class="dark oferta" id="oferta">
+<section class="light" id="oferta">
   <div class="wrap">
     <p class="eyebrow">Oferta especial</p>
-    <h2>tudo o que você recebe.</h2>
-    <div class="grid">
-      <div class="stack">
+    <h2>sua escola mais estruturada começa com a decisão que você toma agora.</h2>
+    <div class="of">
+      <div>
         <div class="r"><span>Kit de Matrículas e Gestão Escolar 2027</span><span>R$ 297,00</span></div>
         <div class="r"><span>Combo Escola Legalmente Segura 2027</span><span>R$ 497,00</span></div>
-        <div class="r"><span>Quatro encontros de aplicação ao vivo<small>valor de referência</small></span><span>R$ 2.000,00</span></div>
-        <div class="r"><span>Bônus exclusivos<small>gravação da aula + bônus por ordem de compra</small></span><span>incluso</span></div>
+        <div class="r"><span>Quatro encontros ao vivo<small>valor de referência</small></span><span>R$ 2.000,00</span></div>
         <div class="tot"><span>Valor total de referência</span><s>R$ 2.794,00</s></div>
       </div>
       <div class="caixa">
-        <div class="k">Condição especial de lançamento</div>
-        <div class="de">de <s>R$ 2.794,00</s> por</div>
-        <div class="por"><sup>R$</sup>497,00</div>
-        <ul>
-          <li>Os dois kits completos</li>
-          <li>Quatro encontros ao vivo com Eduarda e Ionara</li>
-          <li>Bônus exclusivos</li>
-        </ul>
-        <a class="btn cta" href="#oferta">Quero minha escola estruturada</a>
-        <p class="urg">O primeiro encontro é em 30/11. Os bônus de acesso e o sorteio da consultoria VIP valem só para as 20 e as 10 primeiras compradoras.</p>
+        <div class="k">BLACK FRIDAY</div>
+        <div class="v"><sup>R$</sup>497,00</div>
+        <p>Os dois kits completos e quatro encontros ao vivo com uma diretora escolar e uma advogada, trabalhando juntas para preparar sua escola para 2027.</p>
+        <a class="btn cta" href="#oferta">Adquira agora</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PARA QUEM -->
-<section class="light">
-  <div class="wrap">
-    <p class="eyebrow">Para quem é</p>
-    <h2>feito para quem quer começar 2027 diferente.</h2>
-    <div class="pq">
-      <div class="sim">
-        <h3>É para você se</h3>
-        <ul>
-          <li>Você é dona ou diretora de escola e sente que tudo passa por você.</li>
-          <li>Seus documentos foram feitos há anos e só mudaram a data.</li>
-          <li>Já teve dúvida se podia cobrar, negar, suspender ou cancelar algo.</li>
-          <li>Quer organizar matrículas, cobranças e inclusão antes do próximo ano.</li>
-        </ul>
-      </div>
-      <div class="nao">
-        <h3>Não é para você se</h3>
-        <ul>
-          <li>Procura modelos para usar sem ler nem adaptar à sua escola.</li>
-          <li>Espera que um documento substitua processos dentro da escola.</li>
-          <li>Não tem disponibilidade para aplicar o que for trabalhado nos encontros.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="graf">
-  <div class="wrap">
-    <p class="eyebrow">Dúvidas frequentes</p>
-    <h2>antes de decidir.</h2>
-    <div class="faq">
-      <details><summary>Quando acontecem os encontros?</summary><p>São quatro encontros ao vivo, às segundas-feiras: 30/11, 07/12, 14/12 e 21/12.</p></details>
-      <details><summary>Os documentos servem para qualquer escola?</summary><p>Eles são modelos para você adaptar à realidade da sua instituição, acompanhados de orientações práticas de gestão e jurídico para fazer essa adaptação com segurança.</p></details>
-      <details><summary>Qual é a diferença entre os dois kits?</summary><p>O Kit de Matrículas e Gestão Escolar organiza a rotina: atendimento, visitas, propostas e processos. O Combo Escola Legalmente Segura organiza a documentação: contrato, edital, autorizações e proteção de dados. Um cuida de como a escola funciona; o outro, de como ela se protege.</p></details>
-      <details><summary>Como funcionam os bônus das primeiras compradoras?</summary><p>Todas recebem a gravação da aula de 21/11. As 20 primeiras recebem acesso ao Escola Plural e ao Escola Magnética. As 10 primeiras participam do sorteio de uma consultoria VIP individual com Eduarda e Ionara.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- CTA FINAL -->
-<section class="dark final">
-  <div class="wrap">
-    <p class="eyebrow">Sua decisão</p>
-    <h2>2027 não precisa ser a repetição dos mesmos problemas.</h2>
-    <p class="lead muted" style="margin:22px 0 30px">Sua escola merece começar o próximo ano mais estruturada. Dois kits, quatro encontros ao vivo e bônus por R$ 497,00.</p>
-    <a class="btn cta" href="#oferta">Adquira agora por R$ 497,00</a>
-  </div>
-</section>
-
-<footer class="rod dark">
+<footer class="rod">
   <div class="wrap"><span>Escola Estruturada™ · Jurídico + Gestão Escolar</span><span>@nasaladadiretora + @ionaraoliveiracp</span></div>
 </footer>
 
