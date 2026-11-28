@@ -1,0 +1,432 @@
+<title>Protótipos 2027</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kristi&family=Montserrat:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --creme:#F5EBDD; --vinho:#731C50; --rosa:#D33683; --coral:#F26B78; --laranja:#ED8749; --verde:#246B64;
+    --tinta:#2E2420; --linha:#D8C6AE;
+    --me:1.5cm; --mx:0.8cm;
+    --ui-bg:#ffffff; --ui-fg:#2b2118; --ui-muted:#8a7f72; --ui-border:#e7e0d6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --ui-bg:#201c18; --ui-fg:#f1ebe2; --ui-muted:#a79c8d; --ui-border:#3a332c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"]{ --ui-bg:#201c18; --ui-fg:#f1ebe2; --ui-muted:#a79c8d; --ui-border:#3a332c; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { background: var(--ui-bg); color: var(--ui-fg); font-family: system-ui, sans-serif; }
+  .shell { padding-left: max(16px, env(safe-area-inset-left,0px)); padding-right: max(16px, env(safe-area-inset-right,0px)); padding-block: 18px 60px; max-width: 1400px; margin: 0 auto; }
+  .tool-header { margin-bottom: 18px; }
+  .tool-header h1 { font-size: 18px; margin: 0 0 4px; }
+  .tool-header p { font-size: 13px; color: var(--ui-muted); margin: 0; max-width: 60ch; }
+  nav.tool-nav { position: sticky; top: env(safe-area-inset-top,0px); z-index: 10; display: flex; gap: 6px; overflow-x: auto; padding: 10px 0; margin: 0 0 22px; background: var(--ui-bg); border-bottom: 1px solid var(--ui-border); }
+  nav.tool-nav a { flex: none; font-size: 11.5px; padding: 6px 10px; border: 1px solid var(--ui-border); border-radius: 999px; color: var(--ui-fg); text-decoration: none; white-space: nowrap; }
+  nav.tool-nav a:hover { border-color: var(--vinho); color: var(--vinho); }
+  section.proto { margin-bottom: 46px; }
+  section.proto h2.proto-title { font-size: 13px; font-weight: 700; margin: 0 0 2px; }
+  section.proto p.proto-note { font-size: 12px; color: var(--ui-muted); margin: 0 0 12px; max-width: 70ch; }
+  .stage { overflow-x: auto; padding-bottom: 6px; }
+  .stage-inner { display: inline-block; box-shadow: 0 1px 3px rgba(0,0,0,.18); }
+
+  /* ---- escala tipográfica do planner (tokens) ---- */
+  .titulo-mes{ font-family:'Kristi',cursive; font-size:72px; line-height:.95; font-weight:400; color:var(--verde); }
+  .frase-capa{ font-family:'Kristi',cursive; font-size:50px; line-height:1.08; font-weight:400; color:var(--verde); }
+  .titulo-secao{ font-family:'Kristi',cursive; font-size:38px; line-height:1.05; font-weight:400; color:var(--verde); }
+  .h1{ font-family:'Montserrat',sans-serif; font-size:19px; line-height:1.25; font-weight:700; letter-spacing:0; color:var(--tinta); margin:0; }
+  .h2{ font-family:'Montserrat',sans-serif; font-size:13px; line-height:1.3; font-weight:700; letter-spacing:0; color:var(--tinta); margin:0; }
+  .eyebrow{ font-family:'Montserrat',sans-serif; font-size:9px; line-height:1.3; font-weight:600; letter-spacing:1px; color:var(--tinta); opacity:.62; text-transform:uppercase; margin:0 0 4px; }
+  .corpo{ font-family:'Montserrat',sans-serif; font-size:10px; line-height:1.55; font-weight:400; color:var(--tinta); margin:0; }
+  .corpo-medium{ font-family:'Montserrat',sans-serif; font-size:10px; line-height:1.55; font-weight:500; color:var(--tinta); margin:0; }
+  .legenda{ font-family:'Montserrat',sans-serif; font-size:7.5px; line-height:1.3; font-weight:600; letter-spacing:.5px; color:var(--tinta); text-transform:uppercase; margin:0; }
+  .numero-data{ font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:var(--laranja); }
+  .epigrafe{ font-family:'Cormorant Garamond',serif; font-size:13px; line-height:1.5; font-style:italic; color:var(--tinta); margin:0; }
+  .campo{ border-bottom:1px solid var(--linha); height: 20px; }
+  .rascunho{ position:absolute; top:8px; right:8px; font-family:'Montserrat',sans-serif; font-size:6.5px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; color:#fff; background:var(--coral); padding:2px 6px; }
+
+  /* ---- páginas físicas ---- */
+  .pagina{ width:21cm; height:18cm; background:var(--creme); position:relative; padding-top:var(--mx); padding-bottom:var(--mx); overflow:hidden; }
+  .pagina.par{ padding-left:var(--mx); padding-right:var(--me); }
+  .pagina.impar{ padding-left:var(--me); padding-right:var(--mx); }
+  .dupla{ width:42cm; height:18cm; display:flex; background:var(--creme); }
+  .dupla .pagina{ box-shadow: none; }
+  .corner{ position:absolute; pointer-events:none; }
+  .corner img{ display:block; }
+</style>
+
+<div class="shell">
+  <div class="tool-header">
+    <h1>Protótipos — Planner da Diretora 2027</h1>
+    <p>Escala real (21×18cm por página / 42×18cm na dupla aberta). Textos marcados <span style="color:var(--coral); font-weight:700;">RASCUNHO</span> são placeholder — aguardando os textos definitivos aprovados por você. Deslize cada mockup na horizontal para ver por inteiro.</p>
+  </div>
+
+  <nav class="tool-nav">
+    <a href="#capa">Capa</a>
+    <a href="#identificacao">Identificação</a>
+    <a href="#carta">Carta</a>
+    <a href="#exercicio">Exercício</a>
+    <a href="#roda">Roda da vida</a>
+    <a href="#gestao">Pilares de gestão</a>
+    <a href="#abertura-mes">Abertura mensal</a>
+    <a href="#calendario-mes">Calendário mensal</a>
+    <a href="#semanal-a">Semanal — alternativa A</a>
+    <a href="#semanal-b">Semanal — alternativa B</a>
+    <a href="#fechamento">Fechamento mensal</a>
+  </nav>
+
+  <!-- 1 — CAPA -->
+  <section class="proto" id="capa">
+    <h2 class="proto-title">1 · Capa</h2>
+    <p class="proto-note">Composição aprovada, sem título "Planner da Diretora", sem autoria, sem corações.</p>
+    <div class="stage"><div class="stage-inner">
+      <div class="pagina" style="padding:0;">
+        <img src="../sistema-visual/paisley/paisley-frente.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <div style="position:absolute; top:1.6cm; left:0; right:0; text-align:center; font-family:'Montserrat',sans-serif; font-size:15px; font-weight:600; letter-spacing:0; color:var(--laranja);">2027</div>
+        <div class="frase-capa" style="position:absolute; top:44%; left:2.4cm; right:2.4cm; text-align:center;">É justo que muito custe<br>o que muito vale!</div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 2 — IDENTIFICAÇÃO -->
+  <section class="proto" id="identificacao">
+    <h2 class="proto-title">2 · Página de identificação</h2>
+    <p class="proto-note">"Este planner pertence a…" — paisley mínimo, só um canto (intensidade 3).</p>
+    <div class="stage"><div class="stage-inner">
+      <div class="pagina impar">
+        <div class="corner" style="right:-0.3cm; bottom:-0.3cm; width:7cm; opacity:.9;"><img src="../sistema-visual/paisley/paisley-verso.png" style="width:100%; transform: scaleX(-1) scaleY(-1);"></div>
+        <div class="eyebrow">Planner da Diretora · 2027</div>
+        <div class="titulo-secao" style="margin-bottom:.6cm;">Este planner pertence a</div>
+        <div class="campo" style="width:11cm; margin-bottom:.9cm;"></div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: .5cm .9cm; max-width:12.5cm;">
+          <div><div class="legenda">Escola</div><div class="campo"></div></div>
+          <div><div class="legenda">Ano letivo</div><div class="campo"></div></div>
+          <div><div class="legenda">Telefone</div><div class="campo"></div></div>
+          <div><div class="legenda">E-mail</div><div class="campo"></div></div>
+          <div style="grid-column:1/3;"><div class="legenda">Em caso de emergência, contatar</div><div class="campo"></div></div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 3 — CARTA DE BOAS-VINDAS -->
+  <section class="proto" id="carta">
+    <h2 class="proto-title">3 · Carta de boas-vindas</h2>
+    <p class="proto-note">Sem decoração — página de leitura. Texto de corpo é placeholder.</p>
+    <div class="stage"><div class="stage-inner">
+      <div class="pagina par" style="position:relative;">
+        <div class="rascunho">rascunho</div>
+        <div class="eyebrow">Uma carta para você</div>
+        <div class="titulo-secao" style="margin-bottom:.5cm;">Antes de começarmos</div>
+        <div class="epigrafe" style="margin-bottom:.45cm; max-width:13.5cm;">Diagnóstico → Metas → Planejamento → Execução → Avaliação → Replanejamento.</div>
+        <p class="corpo" style="max-width:13.5cm; margin-bottom:.35cm;">Diretora,</p>
+        <p class="corpo" style="max-width:13.5cm; margin-bottom:.35cm;">Esse planner nasceu de uma constatação simples: você não vive duas vidas. É a mesma mulher que fecha a folha de pagamento da escola e que também precisa lembrar da consulta médica, do aniversário da equipe e do seu próprio descanso. Por isso ele não separa o profissional do pessoal — ele junta.</p>
+        <p class="corpo" style="max-width:13.5cm; margin-bottom:.35cm;">Nas próximas páginas você vai planejar sua escola e vai planejar você. Use-o com a mesma seriedade que usa para tomar as decisões mais importantes do seu ano.</p>
+        <p class="corpo">Com carinho,<br>Eduarda de Paula</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 4 — EXERCÍCIO PESSOAL -->
+  <section class="proto" id="exercicio">
+    <h2 class="proto-title">4 · Página de exercício pessoal</h2>
+    <p class="proto-note">"Antes de planejar, olhe para você" — perguntas placeholder, 3–4 linhas de resposta cada.</p>
+    <div class="stage"><div class="stage-inner">
+      <div class="pagina impar" style="position:relative;">
+        <div class="rascunho">rascunho</div>
+        <div class="corner" style="right:-0.2cm; top:-0.2cm; width:4.6cm; opacity:.85;"><img src="../sistema-visual/paisley/paisley-frente.png" style="width:100%;"></div>
+        <div class="eyebrow">Parte 1 — Eu, além da direção</div>
+        <div class="titulo-secao" style="margin-bottom:.6cm;">Antes de planejar,<br>olhe para você</div>
+        <div style="max-width:13.2cm;">
+          <p class="corpo-medium" style="margin-bottom:.2cm;">O que mudou em mim desde o último ano letivo?</p>
+          <div class="campo" style="margin-bottom:.15cm;"></div><div class="campo" style="margin-bottom:.15cm;"></div><div class="campo" style="margin-bottom:.55cm;"></div>
+          <p class="corpo-medium" style="margin-bottom:.2cm;">O que eu preciso deixar de lado para 2027 ser mais leve?</p>
+          <div class="campo" style="margin-bottom:.15cm;"></div><div class="campo" style="margin-bottom:.15cm;"></div><div class="campo" style="margin-bottom:.55cm;"></div>
+          <p class="corpo-medium" style="margin-bottom:.2cm;">O que eu quero sentir, com mais frequência, no dia a dia da escola?</p>
+          <div class="campo" style="margin-bottom:.15cm;"></div><div class="campo" style="margin-bottom:.15cm;"></div><div class="campo"></div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 5 — RODA DA VIDA -->
+  <section class="proto" id="roda">
+    <h2 class="proto-title">5 · Minha roda da vida</h2>
+    <p class="proto-note">Diagrama gerado por código (8 setores, anéis 2–10) — a diretora pinta à mão depois de impresso.</p>
+    <div class="stage"><div class="stage-inner">
+      <div class="pagina par">
+        <div class="eyebrow">Parte 1 — Eu, além da direção</div>
+        <div class="titulo-secao" style="margin-bottom:.25cm;">Minha roda da vida</div>
+        <p class="corpo" style="max-width:12.5cm; margin-bottom:.3cm;">Pinte cada fatia até o número que representa o quanto você está satisfeita com essa área hoje. Quanto mais perto do centro, menos satisfeita; quanto mais perto da borda, mais satisfeita.</p>
+        <div id="roda-svg-slot" style="display:flex; justify-content:center;"></div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 6 — FERRAMENTA DE GESTÃO -->
+  <section class="proto" id="gestao">
+    <h2 class="proto-title">6 · Ferramenta de gestão — pilares</h2>
+    <p class="proto-note">Corrige a falha do 2026: colunas rotuladas (início / meio / fim do ano) + ação por pilar.</p>
+    <div class="stage"><div class="stage-inner">
+      <div class="pagina impar">
+        <div class="eyebrow">Parte 2 — A escola que eu quero construir</div>
+        <div class="titulo-secao" style="margin-bottom:.3cm;">Os pilares da minha gestão</div>
+        <p class="corpo" style="margin-bottom:.35cm;">Dê uma nota de 1 a 10 para cada pilar, três vezes ao longo do ano, e anote uma ação concreta para evoluir.</p>
+        <table style="width:100%; border-collapse:collapse;">
+          <thead>
+            <tr>
+              <td class="legenda" style="padding:4px 6px 4px 0;">Pilar</td>
+              <td class="legenda" style="padding:4px; text-align:center;">Início</td>
+              <td class="legenda" style="padding:4px; text-align:center;">Meio</td>
+              <td class="legenda" style="padding:4px; text-align:center;">Fim</td>
+              <td class="legenda" style="padding:4px;">Uma ação para evoluir</td>
+            </tr>
+          </thead>
+          <tbody id="pilares-tbody"></tbody>
+        </table>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 7 — ABERTURA MENSAL -->
+  <section class="proto" id="abertura-mes">
+    <h2 class="proto-title">7 · Abertura mensal (exemplo: janeiro)</h2>
+    <p class="proto-note">Paisley grande em um canto (intensidade 2) + foco estratégico do mês.</p>
+    <div class="stage"><div class="stage-inner">
+      <div class="pagina par" style="position:relative;">
+        <div class="corner" style="left:-0.4cm; top:-0.4cm; width:9.5cm; opacity:.95;"><img src="../sistema-visual/paisley/paisley-frente.png" style="width:100%;"></div>
+        <div style="position:absolute; left:1.3cm; bottom:1.6cm; max-width:12.5cm;">
+          <div class="titulo-mes" style="margin-bottom:.25cm;">Janeiro</div>
+          <div class="eyebrow">Foco do mês</div>
+          <div class="h1" style="margin-bottom:.3cm;">Planejar e preparar.</div>
+          <p class="corpo rascunho-inline" style="position:static; display:inline; background:none; color:var(--tinta); padding:0;">Antes de a correria do ano letivo começar, decida o que vai guiar os próximos doze meses — para a escola e para você.</p>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 8 — CALENDÁRIO MENSAL -->
+  <section class="proto" id="calendario-mes">
+    <h2 class="proto-title">8 · Calendário mensal (janeiro de 2027)</h2>
+    <p class="proto-note">Datas e feriado nacional calculados por código — segunda-feira como primeiro dia.</p>
+    <div class="stage"><div class="stage-inner">
+      <div class="pagina impar">
+        <div class="h1" style="margin-bottom:.35cm;">Calendário de janeiro</div>
+        <div id="cal-slot"></div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 9 — SEMANAL A -->
+  <section class="proto" id="semanal-a">
+    <h2 class="proto-title">9 · Página dupla semanal — alternativa A (colunas por dia)</h2>
+    <p class="proto-note">7 colunas iguais, manhã/tarde/noite em cada uma, fim de semana do mesmo tamanho que os dias úteis.</p>
+    <div class="stage"><div class="stage-inner">
+      <div class="dupla" id="semana-a-slot"></div>
+    </div></div>
+  </section>
+
+  <!-- 10 — SEMANAL B -->
+  <section class="proto" id="semanal-b">
+    <h2 class="proto-title">10 · Página dupla semanal — alternativa B (linhas por dia)</h2>
+    <p class="proto-note">7 linhas horizontais, mais espaço de escrita por período, tira fixa de prioridades no topo.</p>
+    <div class="stage"><div class="stage-inner">
+      <div class="dupla" id="semana-b-slot"></div>
+    </div></div>
+  </section>
+
+  <!-- 11 — FECHAMENTO MENSAL -->
+  <section class="proto" id="fechamento">
+    <h2 class="proto-title">11 · Fechamento mensal (janeiro)</h2>
+    <p class="proto-note">Página que não existia no 2026 — fecha o mês e já aponta o próximo.</p>
+    <div class="stage"><div class="stage-inner">
+      <div class="pagina par">
+        <div class="h1" style="margin-bottom:.35cm;">Fechamento de janeiro</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:.3cm .9cm; margin-bottom:.4cm;">
+          <div><div class="legenda" style="margin-bottom:.1cm;">Metas alcançadas</div><div class="campo"></div><div class="campo" style="margin-top:.12cm;"></div></div>
+          <div><div class="legenda" style="margin-bottom:.1cm;">Metas não alcançadas</div><div class="campo"></div><div class="campo" style="margin-top:.12cm;"></div></div>
+        </div>
+        <div class="legenda" style="margin-bottom:.1cm;">Resultados da escola e conquistas pessoais</div>
+        <div class="campo" style="margin-bottom:.12cm;"></div><div class="campo" style="margin-bottom:.4cm;"></div>
+        <div class="legenda" style="margin-bottom:.1cm;">Dificuldades enfrentadas e ajustes necessários</div>
+        <div class="campo" style="margin-bottom:.12cm;"></div><div class="campo" style="margin-bottom:.4cm;"></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:.3cm .9cm;">
+          <div><div class="legenda" style="margin-bottom:.1cm;">Pendências para fevereiro</div><div class="campo"></div></div>
+          <div><div class="legenda" style="margin-bottom:.1cm;">Prioridades de fevereiro</div><div class="campo"></div></div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---------- feriados nacionais (Páscoa via Meeus/Jones/Butcher) ----------
+  function pascoa(ano){
+    const a=ano%19,b=Math.floor(ano/100),c=ano%100,d=Math.floor(b/4),e=b%4,
+          f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,
+          i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),
+          mes=Math.floor((h+l-7*m+114)/31), dia=((h+l-7*m+114)%31)+1;
+    return new Date(ano, mes-1, dia);
+  }
+  function addDias(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r; }
+  function ymd(d){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+  const ANO=2027, PASCOA=pascoa(ANO);
+  const FERIADOS = {};
+  [[0,1,"Confraternização Universal"],[3,21,"Tiradentes"],[4,1,"Dia do Trabalho"],[8,7,"Independência do Brasil"],
+   [9,12,"Nossa Senhora Aparecida"],[10,2,"Finados"],[10,15,"Proclamação da República"],[11,25,"Natal"]
+  ].forEach(([m,d,nome])=>{ FERIADOS[ymd(new Date(ANO,m,d))]=nome; });
+  FERIADOS[ymd(addDias(PASCOA,-47))]="Carnaval";
+  FERIADOS[ymd(addDias(PASCOA,-2))]="Sexta-feira Santa";
+  FERIADOS[ymd(PASCOA)]="Páscoa";
+
+  const DIAS_SEMANA=["SEGUNDA","TERÇA","QUARTA","QUINTA","SEXTA","SÁBADO","DOMINGO"];
+  const MESES=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+
+  // ---------- 1. Roda da vida (SVG) ----------
+  (function(){
+    const setores=["Saúde","Família","Relacionamentos","Escola/Carreira","Financeiro","Desenvolvimento pessoal","Lazer","Espiritualidade"];
+    const n=setores.length, cx=160, cy=160, rMax=130, anéis=[2,4,6,8,10];
+    const NS="http://www.w3.org/2000/svg";
+    const svg=document.createElementNS(NS,"svg");
+    svg.setAttribute("width",360); svg.setAttribute("height",360); svg.setAttribute("viewBox","0 0 360 360");
+    const g=document.createElementNS(NS,"g"); g.setAttribute("transform","translate(40,30)"); svg.appendChild(g);
+    anéis.forEach(v=>{
+      const r=rMax*(v/10);
+      const circle=document.createElementNS(NS,"circle");
+      circle.setAttribute("cx",cx-40); circle.setAttribute("cy",cy-30); circle.setAttribute("r",r);
+      circle.setAttribute("fill","none"); circle.setAttribute("stroke","#D8C6AE"); circle.setAttribute("stroke-width","1");
+      g.appendChild(circle);
+      const t=document.createElementNS(NS,"text");
+      t.setAttribute("x",cx-40); t.setAttribute("y",cy-30-r-3); t.setAttribute("text-anchor","middle");
+      t.setAttribute("font-family","Montserrat,sans-serif"); t.setAttribute("font-size","7"); t.setAttribute("fill","#2E2420"); t.setAttribute("opacity",".55");
+      t.textContent=v; g.appendChild(t);
+    });
+    for(let k=0;k<n;k++){
+      const ang=(Math.PI*2*k/n)-Math.PI/2;
+      const x2=(cx-40)+rMax*Math.cos(ang), y2=(cy-30)+rMax*Math.sin(ang);
+      const line=document.createElementNS(NS,"line");
+      line.setAttribute("x1",cx-40); line.setAttribute("y1",cy-30); line.setAttribute("x2",x2); line.setAttribute("y2",y2);
+      line.setAttribute("stroke","#D8C6AE"); line.setAttribute("stroke-width","1");
+      g.appendChild(line);
+      const labelR=rMax+16;
+      const lx=(cx-40)+labelR*Math.cos(ang), ly=(cy-30)+labelR*Math.sin(ang);
+      const label=document.createElementNS(NS,"text");
+      label.setAttribute("x",lx); label.setAttribute("y",ly); label.setAttribute("text-anchor","middle");
+      label.setAttribute("font-family","Montserrat,sans-serif"); label.setAttribute("font-size","8.5"); label.setAttribute("font-weight","600");
+      label.setAttribute("fill","#2E2420");
+      const words=setores[k].split(" ");
+      words.forEach((w,wi)=>{
+        const ts=document.createElementNS(NS,"tspan"); ts.textContent=w;
+        ts.setAttribute("x",lx); ts.setAttribute("dy", wi===0? 0 : 9);
+        label.appendChild(ts);
+      });
+      g.appendChild(label);
+    }
+    document.getElementById("roda-svg-slot").appendChild(svg);
+  })();
+
+  // ---------- 2. Tabela de pilares ----------
+  (function(){
+    const pilares=["Pedagógica","Administrativa","Financeira","Pessoas","Estrutura física","Comunicação","Marketing e captação","Relacionamento com famílias"];
+    const tbody=document.getElementById("pilares-tbody");
+    pilares.forEach(p=>{
+      const tr=document.createElement("tr");
+      tr.innerHTML = '<td class="corpo-medium" style="padding:5px 6px 5px 0; border-bottom:1px solid var(--linha);">'+p+'</td>'
+        + '<td style="padding:5px; border-bottom:1px solid var(--linha); text-align:center;"><span class="campo" style="display:inline-block; width:22px; border-bottom:1px solid var(--linha);">&nbsp;</span></td>'
+        + '<td style="padding:5px; border-bottom:1px solid var(--linha); text-align:center;"><span class="campo" style="display:inline-block; width:22px; border-bottom:1px solid var(--linha);">&nbsp;</span></td>'
+        + '<td style="padding:5px; border-bottom:1px solid var(--linha); text-align:center;"><span class="campo" style="display:inline-block; width:22px; border-bottom:1px solid var(--linha);">&nbsp;</span></td>'
+        + '<td style="padding:5px; border-bottom:1px solid var(--linha);"><span class="campo" style="display:block; border-bottom:1px solid var(--linha);">&nbsp;</span></td>';
+      tbody.appendChild(tr);
+    });
+  })();
+
+  // ---------- 3. Calendário mensal (janeiro 2027) ----------
+  (function(){
+    const mes=0; // janeiro
+    const primeiro=new Date(ANO,mes,1);
+    const ultimo=new Date(ANO,mes+1,0);
+    let inicio=new Date(primeiro); inicio.setDate(inicio.getDate() - ((inicio.getDay()+6)%7));
+    let fim=new Date(ultimo); fim.setDate(fim.getDate() + ((7-((fim.getDay()+6)%7+1))%7));
+    const dias=[]; for(let d=new Date(inicio); d<=fim; d.setDate(d.getDate()+1)) dias.push(new Date(d));
+
+    let html = '<div style="display:grid; grid-template-columns:repeat(7,1fr); gap:1px; background:var(--linha); border:1px solid var(--linha);">';
+    DIAS_SEMANA.forEach(d=>{ html += '<div class="legenda" style="background:var(--creme); padding:4px 6px;">'+d+'</div>'; });
+    dias.forEach(d=>{
+      const foraDoMes = d.getMonth()!==mes;
+      const feriado = FERIADOS[ymd(d)];
+      html += '<div style="background:var(--creme); min-height:1.55cm; padding:3px 5px; opacity:'+(foraDoMes?'.35':'1')+';">'
+        + '<div class="numero-data">'+d.getDate()+'</div>'
+        + (feriado? '<div class="legenda" style="color:var(--vinho); opacity:1;">'+feriado+'</div>' : '')
+        + '</div>';
+    });
+    html += '</div>';
+    document.getElementById("cal-slot").innerHTML = html;
+  })();
+
+  // ---------- 4. Páginas duplas semanais ----------
+  function semanaDatas(segunda){
+    const out=[]; for(let i=0;i<7;i++) out.push(addDias(segunda,i)); return out;
+  }
+  const SEG_EXEMPLO = new Date(2027,0,4); // primeira segunda-feira completa de janeiro
+  const datasSemana = semanaDatas(SEG_EXEMPLO);
+
+  function cabecalhoDia(d,i){
+    const feriado = FERIADOS[ymd(d)];
+    return '<div style="display:flex; align-items:baseline; justify-content:space-between; border-bottom:1px solid var(--tinta); padding-bottom:3px; margin-bottom:6px;">'
+      + '<span class="legenda">'+DIAS_SEMANA[i]+'</span>'
+      + '<span class="numero-data">'+String(d.getDate()).padStart(2,"0")+'</span>'
+      + '</div>' + (feriado? '<div class="legenda" style="color:var(--vinho); margin:-4px 0 6px;">'+feriado+'</div>' : '');
+  }
+
+  // Alternativa A — colunas por dia, 2 páginas (4 dias + 3 dias/sidebar)
+  (function(){
+    const periodos=["MANHÃ","TARDE","NOITE"];
+    function coluna(d,i){
+      let h = '<div style="flex:1; min-width:0; padding:0 .25cm; border-right:1px solid var(--linha);">'+cabecalhoDia(d,i);
+      periodos.forEach(p=>{
+        h += '<div class="legenda" style="opacity:.55; margin:.22cm 0 .08cm;">'+p+'</div>'
+           + '<div class="campo" style="margin-bottom:.1cm;"></div><div class="campo" style="margin-bottom:.1cm;"></div>';
+      });
+      h += '</div>';
+      return h;
+    }
+    let esquerda = '<div class="pagina par" style="display:flex;">';
+    for(let i=0;i<4;i++) esquerda += coluna(datasSemana[i], i);
+    esquerda += '</div>';
+    let direita = '<div class="pagina impar" style="display:flex;">';
+    for(let i=4;i<7;i++) direita += coluna(datasSemana[i], i);
+    direita += '<div style="width:3.1cm; padding-left:.3cm;">'
+      + '<div class="h2" style="margin-bottom:.25cm;">Esta semana</div>'
+      + '<div class="legenda" style="margin-bottom:.1cm;">Prioridades</div><div class="campo" style="margin-bottom:.1cm;"></div><div class="campo" style="margin-bottom:.3cm;"></div>'
+      + '<div class="legenda" style="margin-bottom:.1cm;">Delegações</div><div class="campo" style="margin-bottom:.1cm;"></div><div class="campo" style="margin-bottom:.3cm;"></div>'
+      + '<div class="legenda" style="margin-bottom:.1cm;">Pendências</div><div class="campo" style="margin-bottom:.1cm;"></div><div class="campo"></div>'
+      + '</div>';
+    direita += '</div>';
+    document.getElementById("semana-a-slot").innerHTML = esquerda + direita;
+  })();
+
+  // Alternativa B — linhas por dia, tira de prioridades no topo
+  (function(){
+    function linhaDia(d,i){
+      return '<div style="display:flex; gap:.35cm; padding:.18cm 0; border-bottom:1px solid var(--linha);">'
+        + '<div style="width:2.1cm; flex:none;"><div class="legenda">'+DIAS_SEMANA[i]+'</div><div class="numero-data">'+String(d.getDate()).padStart(2,"0")+'</div>'
+        + (FERIADOS[ymd(d)]? '<div class="legenda" style="color:var(--vinho);">'+FERIADOS[ymd(d)]+'</div>' : '') + '</div>'
+        + ['MANHÃ','TARDE','NOITE'].map(p=>'<div style="flex:1; min-width:0;"><div class="legenda" style="opacity:.55; margin-bottom:.05cm;">'+p+'</div><div class="campo"></div></div>').join('')
+        + '</div>';
+    }
+    let topo = '<div style="padding:0 .3cm .18cm; border-bottom:1px solid var(--tinta); margin-bottom:.15cm; display:flex; gap:.6cm;">'
+      + '<div style="flex:1;"><div class="legenda">Prioridades da semana</div><div class="campo"></div></div>'
+      + '<div style="flex:1;"><div class="legenda">Delegações / pendências</div><div class="campo"></div></div>'
+      + '</div>';
+    let esquerda = '<div class="pagina par">' + topo;
+    for(let i=0;i<4;i++) esquerda += linhaDia(datasSemana[i], i);
+    esquerda += '</div>';
+    let direita = '<div class="pagina impar" style="padding-top:calc(var(--mx) + .62cm);">';
+    for(let i=4;i<7;i++) direita += linhaDia(datasSemana[i], i);
+    direita += '</div>';
+    document.getElementById("semana-b-slot").innerHTML = esquerda + direita;
+  })();
+})();
+</script>
