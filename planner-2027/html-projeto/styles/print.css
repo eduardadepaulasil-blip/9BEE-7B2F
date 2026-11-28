@@ -1,0 +1,44 @@
+/* Estrutura de página/impressão do Planner da Diretora 2027 */
+
+@page{ size: var(--artboard-w) var(--artboard-h); margin: 0; }
+
+body{ font-family:'Montserrat',sans-serif; }
+
+/* .pagina = uma folha física (artboard com sangria). A área de corte real (210x180mm)
+   fica centralizada, com 3mm de sangria disponível em cada borda para elementos
+   decorativos que encostam na margem; conteúdo de texto nunca usa essa faixa. */
+.pagina{
+  width: var(--artboard-w);
+  height: var(--artboard-h);
+  background: var(--creme);
+  position: relative;
+  overflow: hidden;
+  padding: calc(var(--sangria) + var(--mx));
+}
+.pagina.par{ padding-left: calc(var(--sangria) + var(--mx)); padding-right: calc(var(--sangria) + var(--me)); }
+.pagina.impar{ padding-left: calc(var(--sangria) + var(--me)); padding-right: calc(var(--sangria) + var(--mx)); }
+
+/* marca de corte discreta, só visível na prova (classe opcional, off por padrão) */
+.pagina::before{
+  content:""; position:absolute; inset: var(--sangria); border: 0; pointer-events:none;
+}
+.mostrar-marcas-de-corte .pagina::before{ outline: .25mm dashed rgba(0,0,0,.25); }
+
+.corner{ position:absolute; pointer-events:none; }
+.corner img{ display:block; width:100%; }
+
+/* cada .pagina é uma folha própria do PDF */
+.pagina{ break-after: page; break-inside: avoid; }
+.pagina:last-child{ break-after: auto; }
+
+/* .dupla agrupa duas .pagina (par+impar) só para efeito visual de página dupla
+   na tela; na impressão, cada .pagina continua sendo a sua própria folha. */
+@media screen{
+  body{ background:#d9d4cb; padding: 10mm 0; }
+  .dupla{ display:flex; width: calc(var(--artboard-w) * 2); margin: 0 auto 10mm; box-shadow: 0 2mm 6mm rgba(0,0,0,.22); }
+  .pagina{ box-shadow: none; flex: none; }
+  .pagina.unica{ margin: 0 auto 10mm; box-shadow: 0 2mm 6mm rgba(0,0,0,.22); }
+}
+@media print{
+  .dupla{ display:contents; }
+}

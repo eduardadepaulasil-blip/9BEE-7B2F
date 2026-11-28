@@ -1,0 +1,35 @@
+/* Tokens do Planner da Diretora 2027 — espelha planner-2027/sistema-visual/tokens.json */
+@font-face{ font-family:'Kristi'; src:url('../fonts/Kristi-Regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+@font-face{ font-family:'Montserrat'; src:url('../fonts/Montserrat-Variable.woff2') format('woff2'); font-weight:300 800; font-style:normal; font-display:swap; }
+@font-face{ font-family:'Cormorant Garamond'; src:url('../fonts/CormorantGaramond-Variable.woff2') format('woff2'); font-weight:400 600; font-style:normal; font-display:swap; }
+@font-face{ font-family:'Cormorant Garamond'; src:url('../fonts/CormorantGaramond-Italic.woff2') format('woff2'); font-weight:400; font-style:italic; font-display:swap; }
+
+:root{
+  --creme:#FBF7F0; --vinho:#731C50; --rosa:#D33683; --coral:#F26B78; --laranja:#ED8749; --verde:#246B64;
+  --tinta:#2E2420; --linha:#D8C6AE;
+
+  /* dimensões físicas */
+  --trim-w:210mm; --trim-h:180mm;
+  --sangria:3mm;
+  --artboard-w:216mm; --artboard-h:186mm; /* trim + sangria nas 4 bordas */
+  --me:15mm;  /* margem de encadernação, 1,5cm */
+  --mx:8mm;   /* margem externa, 0,8cm */
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:#ddd; }
+
+/* ---- escala tipográfica (tokens.json) ---- */
+.titulo-mes{ font-family:'Kristi',cursive; font-size:30mm; line-height:.95; font-weight:400; color:var(--verde); }
+.frase-capa{ font-family:'Kristi',cursive; font-size:11.5mm; line-height:1.25; font-weight:400; color:var(--verde); }
+.titulo-secao{ font-family:'Kristi',cursive; font-size:15.5mm; line-height:1.05; font-weight:400; color:var(--verde); }
+.h1{ font-family:'Montserrat',sans-serif; font-size:7.3mm; line-height:1.25; font-weight:700; letter-spacing:0; color:var(--tinta); margin:0; }
+.h2{ font-family:'Montserrat',sans-serif; font-size:5mm; line-height:1.3; font-weight:700; letter-spacing:0; color:var(--tinta); margin:0; }
+.eyebrow{ font-family:'Montserrat',sans-serif; font-size:3.4mm; line-height:1.3; font-weight:600; letter-spacing:.4mm; color:var(--tinta); opacity:.62; text-transform:uppercase; margin:0 0 1mm; }
+.corpo{ font-family:'Montserrat',sans-serif; font-size:3.8mm; line-height:1.55; font-weight:400; color:var(--tinta); margin:0; }
+.corpo-medium{ font-family:'Montserrat',sans-serif; font-size:3.8mm; line-height:1.55; font-weight:500; color:var(--tinta); margin:0; }
+.legenda{ font-family:'Montserrat',sans-serif; font-size:2.85mm; line-height:1.3; font-weight:600; letter-spacing:.2mm; color:var(--tinta); text-transform:uppercase; margin:0; }
+.numero-data{ font-family:'Montserrat',sans-serif; font-size:5mm; font-weight:700; color:var(--laranja); }
+.epigrafe{ font-family:'Cormorant Garamond',serif; font-size:5mm; line-height:1.5; font-style:italic; color:var(--tinta); margin:0; }
+.campo{ border-bottom:.35mm solid var(--linha); height:7.5mm; }
+.rascunho{ position:absolute; top:3mm; right:3mm; font-family:'Montserrat',sans-serif; font-size:2.4mm; font-weight:700; letter-spacing:.2mm; text-transform:uppercase; color:#fff; background:var(--coral); padding:.8mm 2.2mm; }
